@@ -7,23 +7,8 @@
   This bot allows direct access to and/or manipulation of data via the database, as well as through web-requests (proprietary API).
 
 ## SETUP
-### Generate Token  
-#### Creating a New Discord Application/Bot:  
-  - Visit the [Discord Developer Portal](https://discord.com/developers/applications).
-    - Login (if applicable).
-  - Click on the `New Application` button, at the top right of the page.
-    - Enter your desired application name.
-  - Make sure the new application that you've just created is currently selected (which should automatically be the case)
-    - Select `Bot` in the left side-panel.
-  - Click on the `Add Bot` button (under the `Build-A-Bot` section), at the top right of the page. 
-  - Under `Token`, click on the `Copy` button to have it added to your clipboard. :octocat:
-### Configure Bot
-Configuration file path: `src/settings/Config.py`  
-  - The config file has all the required fields marked out as `REQUIRED`.  
-  - The config file has all its fields explained with comments.   
+### For the setup guide see the guide on the [wiki](https://github.com/Descended/MaplestoryDiscBot/wiki/Setup)
 
-**NOTE:** This bot assumes that it is run on the same machine as the private server & its database.
-  - This behaviour may be altered in the config file as well.  
 ## Features
 ### General Commands
   - Display help page
