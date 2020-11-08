@@ -80,4 +80,4 @@ COMMANDS = [
 ]
 
 # Text in help command
-BOT_VER = "v0.1.0 Alpha"
+BOT_VER = "v0.2.0 Alpha"
