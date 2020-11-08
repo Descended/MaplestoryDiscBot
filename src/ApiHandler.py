@@ -3,6 +3,9 @@ from src.settings import Config
 
 
 class API:
+    """
+        Static class that handles all requests to API server
+    """
 
     @staticmethod
     def get_server_info():

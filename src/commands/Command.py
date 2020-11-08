@@ -1,9 +1,4 @@
-import asyncio
-import random
-
 import discord
-
-import datetime
 
 from src.ApiHandler import API
 from src.Utils import Utils
@@ -68,28 +63,36 @@ class Command:
             return False
         character_name = args[1]
         rows, result = DatabaseHandler.get_character_stats(character_name)
+        # A tuple is returned, result being false means the database is off and vice versa
+
         if not result:
             await txt_channel.send(Config.DATABASE_OFFLINE_MESSAGE)
             return False
         elif len(rows) == 0:
             await txt_channel.send("Character not found")
             return False
-        for row in rows:  # Gets the row values
-            id = row["id"]
-            name = row["name"]
-            level = row["level"]
-            job = row["job"]
-            str = row["str"]
-            dex = row["dex"]
-            luk = row["luk"]
-            int = row["int"]
-            meso = row["meso"]
-            rank = row["rank"]
-            face = row["face"]
-            hair = row["hair"]
-            skin = row["skincolor"]
-            guildid = row["guildid"]
+
+        # It is always 0, cause no two characters should have the same name.
+        char = rows[0]
+        
+        id = char["id"]
+        name = char["name"]
+        level = char["level"]
+        job = char["job"]
+        str = char["str"]
+        dex = char["dex"]
+        luk = char["luk"]
+        int = char["int"]
+        meso = char["meso"]
+        rank = char["rank"]
+        face = char["face"]
+        hair = char["hair"]
+        skin = char["skincolor"] # Other Databases may have this column named "skin", rename accordingly
+        guildid = char["guildid"]
+
         character_img = DatabaseHandler.get_character_look(id, hair, face, skin)  # sends the hair, face and skin id's
+        # character_img is a link from maplestory.io API that lets us draw any character given the correct params
+
         guild_name = DatabaseHandler.get_guild_name(guildid)
         e = discord.Embed(title="Character stats", colour=Config.EMBED_COLOR)
         e.set_thumbnail(url=character_img)
@@ -125,16 +128,20 @@ class Command:
         elif len(rows) == 0:
             await txt_channel.send("Guild not found")
             return False
-        for info in rows:  # gets all guild info
-            guild = info["name"]
-            guild_leader = info["leader"]
-            logo = info["logo"]
-            logo_color = info["logoColor"]
-            logo_bg = info["logoBG"]
-            logo_bg_color = info["logoBGColor"]
-            notice = info["notice"]
-            gp = info["GP"]
-            alliance_id = info["allianceId"]
+
+        # rows[0] because no two guilds will have the same name
+        guild_info = rows[0]
+
+        guild = guild_info["name"]
+        guild_leader = guild_info["leader"]
+        logo = guild_info["logo"]
+        logo_color = guild_info["logoColor"]
+        logo_bg = guild_info["logoBG"]
+        logo_bg_color = guild_info["logoBGColor"]
+        notice = guild_info["notice"]
+        gp = guild_info["GP"]
+        alliance_id = guild_info["allianceId"]
+
         guild_img = Utils.get_guild_logo(guild_mark_id=logo, guild_mark_color_id=logo_color,
                                          guild_background_id=logo_bg, guild_background_color_id=logo_bg_color)
         e = discord.Embed(title="Guild info", colour=Config.EMBED_COLOR)
@@ -161,7 +168,7 @@ class Command:
             return False
         category = args[1]
         table, result = DatabaseHandler.get_rankings(category)
-        if "column" in str(table):  # checks if the word "column" is in the table this means the column was not foound
+        if "column" in str(table):  # checks if the word "column" is in the table this means the column was not found
             await txt_channel.send("Can't find the category")
             return False
         elif not result:
@@ -170,9 +177,11 @@ class Command:
         e = discord.Embed(title=f"Rankings by {category}", colour=Config.EMBED_COLOR)
         e.set_thumbnail(url=Config.ICON_URL)
         for x in range(5):
+
             name = table[x]["name"]
             type = table[x][category]
             job = Utils.get_job_by_id(table[x]["job"])
+
             e.add_field(name=f"{Utils.get_ordinal_number(x + 1)}.  {name} ({job})", value=f"{category}: {type}",
                         inline=False)
         await txt_channel.send(embed=e)
