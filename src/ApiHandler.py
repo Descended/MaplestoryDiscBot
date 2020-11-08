@@ -91,7 +91,7 @@ class API:
                 "amount": amount,
                 "character": name
             }
-            r = requests.get(f"{Config.API_HOST}setgmlevel", params=payload)
+            r = requests.get(f"{Config.API_HOST}givevp", params=payload)
             return r.text
         except EnvironmentError:
             return Config.OFFLINE_MESSAGE
