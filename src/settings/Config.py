@@ -9,8 +9,8 @@ PREFIX = "!"  # REQUIRED; prefix used for commands (e.g. prefix "!" for commands
 ADMIN_ROLE = "Admin"  # REQUIRED; role for admin commands
 LOG_COMMANDS = True  # Toggle logger on/off
 
-ADD_ROLE = True  # When this is true, the bot will attempt to give newly joined users a role
-ROLE_TO_GIVE = ""  # REQUIRED if ADD_ROLE is True, Enter Role Name
+ADD_ROLE = False  # When this is true, the bot will attempt to give newly joined users a role
+ROLE_TO_GIVE = "Role Name Here"  # REQUIRED if ADD_ROLE is True, Enter Role Name
 
 SERVER_NAME = "SpiritMS"  # Display server name
 EMBED_COLOR = 0x03fcc6  # Colour of bot message (no need to touch)
