@@ -49,9 +49,9 @@ CREDITS = {
     # A dictionary to store credits for the !credits command
     # add to this dictionary if you'd like to expand the credits command
     # "DiscordUser": "for <reason>"
-    "@Desc#0416": " - Author",
-    "@Not Brandon#4444": " - Contributor",
-    "@KOOKIIE#9770": " - Contributor"
+    '@Desc#0416': ' - Author',
+    '@Not Brandon#4444': ' - Contributor',
+    'KOOKIIE#9770': ' - Contributor'
 }
 
 # List of commands tracked by the logger:
