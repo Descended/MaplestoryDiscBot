@@ -1,5 +1,4 @@
 import mysql.connector
-import requests
 
 from src.settings import Config
 

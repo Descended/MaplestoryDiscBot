@@ -52,6 +52,20 @@ class Command:
         return True
 
     @staticmethod
+    @command(cmd=["info"])
+    async def handle_info(client, txt_channel, author, msg, message) \
+            -> "Shows server information":
+        embed = discord.Embed(title="Server Info", description=Config.INFO_VERSION, colour=Config.EMBED_COLOR)
+        embed.set_thumbnail(url=Config.THUMBNAIL_URL)
+        embed.add_field(name="Exp", value=Config.INFO_EXP, inline=True)  # Exp
+        embed.add_field(name="Drop", value=Config.INFO_DROP, inline=True)  # Drop
+        embed.add_field(name="Meso", value=Config.INFO_MESO, inline=True)  # Meso
+        embed.add_field(name="Server State", value=Config.INFO_STATE, inline=False)
+        embed.add_field(name="Server Location", value=Config.INFO_LOCATION, inline=False)
+        await txt_channel.send(embed=embed)
+        return True
+
+    @staticmethod
     @command(
         cmd=["character", "char", "player"]
     )
@@ -74,7 +88,7 @@ class Command:
 
         # It is always 0, cause no two characters should have the same name.
         char = rows[0]
-        
+
         id = char["id"]
         name = char["name"]
         level = char["level"]
@@ -87,7 +101,7 @@ class Command:
         rank = char["rank"]
         face = char["face"]
         hair = char["hair"]
-        skin = char["skincolor"] # Other Databases may have this column named "skin", rename accordingly
+        skin = char["skincolor"]  # Other Databases may have this column named "skin", rename accordingly
         guildid = char["guildid"]
 
         character_img = DatabaseHandler.get_character_look(id, hair, face, skin)  # sends the hair, face and skin id's
@@ -177,7 +191,6 @@ class Command:
         e = discord.Embed(title=f"Rankings by {category}", colour=Config.EMBED_COLOR)
         e.set_thumbnail(url=Config.ICON_URL)
         for x in range(5):
-
             name = table[x]["name"]
             type = table[x][category]
             job = Utils.get_job_by_id(table[x]["job"])
@@ -227,13 +240,13 @@ class Command:
     # async def handle_duey(client, txt_channel, author, msg, message) \
     #         -> "Give items through Duey":
     #     args = msg.split(" ")
-        # if len(args) <= 4:
-        #     await txt_channel.send("Usage: !duey <name> <item> <quantity>")
-        #     return
-        # s = API.duey(amount=1, name="Desc")
-        # TODO: sort out logic and remove hard-coding
-        # await txt_channel.send(s)
-        # return True
+    # if len(args) <= 4:
+    #     await txt_channel.send("Usage: !duey <name> <item> <quantity>")
+    #     return
+    # s = API.duey(amount=1, name="Desc")
+    # TODO: sort out logic and remove hard-coding
+    # await txt_channel.send(s)
+    # return True
 
     @staticmethod
     @command(
@@ -382,4 +395,3 @@ class Command:
     #
     #     g = discord.Embed(title=f"{winner} won the giveaway for", description=details, color=Config.EMBED_COLOR)
     #     await txt_channel.send(embed=g)
-

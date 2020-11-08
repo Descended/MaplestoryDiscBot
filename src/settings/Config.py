@@ -4,7 +4,7 @@
 # General Settings
 BOT_TOKEN = ""  # REQUIRED; see README for info on how to generate bot token
 BOT_STATUS = "SpiritMS"  # What the bot will appear to be playing on discord
-THUMBNAIL_URL = ""  # WARNING: UNUSED
+THUMBNAIL_URL = ""  # Used in !info command to display a picture in the embedded message, please fill out
 PREFIX = "!"  # REQUIRED; prefix used for commands (e.g. prefix "!" for commands like "!online")
 ADMIN_ROLE = "Admin"  # REQUIRED; role for admin commands
 LOG_COMMANDS = True  # Toggle logger on/off
@@ -12,7 +12,6 @@ LOG_COMMANDS = True  # Toggle logger on/off
 SERVER_NAME = "SpiritMS"  # Display server name
 EMBED_COLOR = 0x03fcc6  # Colour of bot message (no need to touch)
 ICON_URL = "https://cdn.discordapp.com/icons/722153430457647104/ad8368ee9d687dc73aaa8f47ce0c0026.png?size=128"  # Display icon
-
 
 # Connection Settings
 # For use in DatabaseHandler.py:
@@ -32,6 +31,14 @@ DATABASE_OFFLINE_MESSAGE = "The database is offline"  # Error message (no need t
 REGION = "GMS"
 VERSION = "216"
 
+# Server Information
+# Not required, but make sure to provide accurate info of your server.
+INFO_VERSION = "GMS v83"  # Displays Server Version
+INFO_EXP = "6x"  # Displays Exp Rate of Server
+INFO_DROP = "2x"  # Displays Drop Rate of Server
+INFO_MESO = "1x"  # Displays Meso Rate of Server
+INFO_LOCATION = "Insert Server Location Here"  # Location of the physical server
+INFO_STATE = "Alpha-Open Testing"  # Add what the current state of the server is here
 
 # Other Constants
 # Warning: Do NOT remove original credits! You are legally required to keep them!
