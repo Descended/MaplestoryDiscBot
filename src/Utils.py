@@ -1,6 +1,7 @@
 import json
 from ruamel.yaml import YAML
 from src.settings import Config
+from src.Main import GENERAL_SETTINGS
 yaml = YAML(typ="safe", pure=True)
 
 
@@ -40,7 +41,8 @@ class Utils:
             Return: boolean
         """
         for command in Config.COMMANDS:
-            if cmd == Config.PREFIX + command:
+            # if cmd == Config.PREFIX + command:
+            if cmd == GENERAL_SETTINGS['PREFIX'] + command:
                 return True
         return False
 

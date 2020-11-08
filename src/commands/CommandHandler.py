@@ -4,6 +4,7 @@ from src.CommandLogger import Logger
 from src.Utils import Utils
 from src.commands.Command import Command
 from src.settings import Config
+from src.Main import GENERAL_SETTINGS
 
 
 class CommandHandler:
@@ -14,7 +15,8 @@ class CommandHandler:
         guild = message.guild
         txt_channel = message.channel
 
-        if not str(msg).startswith(Config.PREFIX):
+        # if not str(msg).startswith(Config.PREFIX):
+        if not str(msg).startswith(GENERAL_SETTINGS['PREFIX']):
             return
 
         can_use = author != client
@@ -24,7 +26,8 @@ class CommandHandler:
 
         cmds = [func for func in dir(Command) if callable(getattr(Command, func)) and not func.startswith("__")]
 
-        if Config.LOG_COMMANDS and Utils.is_command(msg.split(" ")[0]):
+        # if Config.LOG_COMMANDS and Utils.is_command(msg.split(" ")[0]):
+        if GENERAL_SETTINGS['LOG_COMMANDS'] and Utils.is_command(msg.split(" ")[0]):
             # If the message is a command we log it to command_log.txt
             Logger.log_command(author, msg.split(" ")[0])
 

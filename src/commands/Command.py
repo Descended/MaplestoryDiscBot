@@ -6,6 +6,7 @@ from src.DatabaseHandler import DatabaseHandler
 
 from src.commands.CommandDecorator import command
 from src.settings import Config
+from src.Main import GENERAL_SETTINGS
 
 
 # General and Admin commands
@@ -36,7 +37,8 @@ class Command:
     async def handle_help(client, txt_channel, author, msg, message) \
             -> "Shows All Commands":  # Standard Help Command to start it off
         if Config.TOGGLE_ON_OFF['help']:
-            reply = "Commands are prefixed with a {}\n\n".format(Config.PREFIX)
+            # reply = "Commands are prefixed with a {}\n\n".format(Config.PREFIX)
+            reply = "Commands are prefixed with a {}\n\n".format(GENERAL_SETTINGS['PREFIX'])
 
             cmds = [func for func in dir(Command) if callable(getattr(Command, func)) and not func.startswith("__")]
             for cmd in sorted(cmds):
@@ -61,7 +63,8 @@ class Command:
     async def handle_info(client, txt_channel, author, msg, message) \
             -> "Shows server information":
         if Config.TOGGLE_ON_OFF['info']:
-            embed = discord.Embed(title="Server Info", description=Config.INFO_VERSION, colour=Config.EMBED_COLOR)
+            # embed = discord.Embed(title="Server Info", description=Config.INFO_VERSION, colour=Config.EMBED_COLOR)
+            embed = discord.Embed(title="Server Info", description=Config.INFO_VERSION, colour=GENERAL_SETTINGS['EMBED_COLOR'])
             embed.set_thumbnail(url=Config.THUMBNAIL_URL)
             embed.add_field(name="Exp", value=Config.INFO_EXP, inline=True)  # Exp
             embed.add_field(name="Drop", value=Config.INFO_DROP, inline=True)  # Drop
@@ -118,10 +121,12 @@ class Command:
             # character_img is a link from maplestory.io API that lets us draw any character given the correct params
 
             guild_name = DatabaseHandler.get_guild_name(guildid)
-            e = discord.Embed(title="Character stats", colour=Config.EMBED_COLOR)
+            # e = discord.Embed(title="Character stats", colour=Config.EMBED_COLOR)
+            e = discord.Embed(title="Character stats", colour=GENERAL_SETTINGS['EMBED_COLOR'])
             e.set_thumbnail(url=character_img)
-            e.set_footer(text=Config.SERVER_NAME,
-                         icon_url=Config.ICON_URL)
+            # e.set_footer(text=Config.SERVER_NAME, icon_url=Config.ICON_URL)
+            e.set_footer(text=GENERAL_SETTINGS['SERVER_NAME'],
+                         icon_url=GENERAL_SETTINGS['ICON_URL'])
             e.add_field(name="Name", value=name, inline=True)
             e.add_field(name="Level", value=level, inline=True)
             e.add_field(name="Job", value=Utils.get_job_by_id(job), inline=True)
@@ -172,9 +177,11 @@ class Command:
 
             guild_img = Utils.get_guild_logo(guild_mark_id=logo, guild_mark_color_id=logo_color,
                                              guild_background_id=logo_bg, guild_background_color_id=logo_bg_color)
-            e = discord.Embed(title="Guild info", colour=Config.EMBED_COLOR)
-            e.set_footer(text=Config.SERVER_NAME,
-                         icon_url=Config.ICON_URL)
+            # e = discord.Embed(title="Guild info", colour=Config.EMBED_COLOR)
+            e = discord.Embed(title="Guild info", colour=GENERAL_SETTINGS['EMBED_COLOR'])
+            # e.set_footer(text=Config.SERVER_NAME, icon_url=Config.ICON_URL)
+            e.set_footer(text=GENERAL_SETTINGS['SERVER_NAME'],
+                         icon_url=GENERAL_SETTINGS['ICON_URL'])
             e.set_thumbnail(url=guild_img)
             e.add_field(name="Name", value=guild, inline=True)
             e.add_field(name="Leader", value=DatabaseHandler.get_character_name(guild_leader), inline=True)
@@ -206,8 +213,10 @@ class Command:
             elif not result:
                 await txt_channel.send(Config.DATABASE_OFFLINE_MESSAGE)
                 return False
-            e = discord.Embed(title=f"Rankings by {category}", colour=Config.EMBED_COLOR)
-            e.set_thumbnail(url=Config.ICON_URL)
+            # e = discord.Embed(title=f"Rankings by {category}", colour=Config.EMBED_COLOR)
+            e = discord.Embed(title=f"Rankings by {category}", colour=GENERAL_SETTINGS['EMBED_COLOR'])
+            # e.set_thumbnail(url=Config.ICON_URL)
+            e.set_thumbnail(url=GENERAL_SETTINGS['ICON_URL'])
             for x in range(5):
                 name = table[x]["name"]
                 type = table[x][category]
@@ -246,7 +255,8 @@ class Command:
         for key in Config.CREDITS:
             credits_info += f"{key} {Config.CREDITS[key]}\n"
 
-        e = discord.Embed(title="Credits", colour=Config.EMBED_COLOR, url="https://github.com/Descended"
+        # e = discord.Embed(title="Credits", colour=Config.EMBED_COLOR, url="https://github.com/Descended/MaplestoryDiscBot")
+        e = discord.Embed(title="Credits", colour=GENERAL_SETTINGS['EMBED_COLOR'], url="https://github.com/Descended"
                                                                           "/MaplestoryDiscBot")
         e.set_thumbnail(url="https://cdn.discordapp.com/emojis/755698200970657863.png?v=1")
         e.add_field(name="Contributors", value=credits_info, inline=True)
@@ -281,7 +291,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["dc"],
-        role=[Config.ADMIN_ROLE]
+        # role=[Config.ADMIN_ROLE]
+        role=[GENERAL_SETTINGS['ADMIN_ROLE']]
     )
     async def handle_dc(client, txt_channel, author, msg, message) \
             -> "DC a player":
@@ -301,7 +312,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["whisper", "msg"],
-        role=[Config.ADMIN_ROLE]
+        # role=[Config.ADMIN_ROLE]
+        role = [GENERAL_SETTINGS['ADMIN_ROLE']]
     )
     async def handle_whisper(client, txt_channel, author, msg, message) \
             -> "Whisper a player in game":
@@ -326,7 +338,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["notice"],
-        role=[Config.ADMIN_ROLE]
+        # role=[Config.ADMIN_ROLE]
+        role=[GENERAL_SETTINGS['ADMIN_ROLE']]
     )
     async def handle_notice(client, txt_channel, author, msg, message) \
             -> "Send a message to all players":
@@ -350,7 +363,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["unban", "pardon"],
-        role=[Config.ADMIN_ROLE]
+        # role=[Config.ADMIN_ROLE]
+        role=[GENERAL_SETTINGS['ADMIN_ROLE']]
     )
     async def handle_unban(client, txt_channel, author, msg, message) \
             -> "Unbans a player":
@@ -370,7 +384,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["setgmlevel", "makegm"],
-        role=[Config.ADMIN_ROLE]
+        # role=[Config.ADMIN_ROLE]
+        role=[GENERAL_SETTINGS['ADMIN_ROLE']]
     )
     async def handle_setgmlevel(client, txt_channel, author, msg, message) \
             -> "Makes a player a gm":
@@ -393,7 +408,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["givevp", "addvp"],
-        role=[Config.ADMIN_ROLE]
+        # role=[Config.ADMIN_ROLE]
+        role=[GENERAL_SETTINGS['ADMIN_ROLE']]
     )
     async def handle_give_vp(client, txt_channel, author, msg, message) \
             -> "Gives a player votepoints":
@@ -417,7 +433,8 @@ class Command:
     # @staticmethod
     # @command(
     #     cmd=["giveaway", "ga"],
-    #     role=[Config.ADMIN_ROLE]
+    #     # role=[Config.ADMIN_ROLE]
+    #     role = [GENERAL_SETTINGS['ADMIN_ROLE']]
     # )
     # async def handle_giveaway(client, txt_channel, author, msg, message) \
     #         -> "Starts a giveaway":

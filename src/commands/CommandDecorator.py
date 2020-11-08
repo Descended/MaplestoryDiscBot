@@ -1,7 +1,8 @@
 # Python Decorator
 import time
 from functools import wraps
-from src.settings import Config
+# from src.settings import Config
+from src.Main import GENERAL_SETTINGS
 
 
 # Credits to Asura, for this beautiful decorator
@@ -23,13 +24,14 @@ def command(**kwargs):
                 # Command name check
                 if "cmd" in key:
                     if isinstance(value, str):
-                        c = "{}{}".format(Config.PREFIX, value)
+                        # c = "{}{}".format(Config.PREFIX, value)
+                        c = "{}{}".format(GENERAL_SETTINGS['PREFIX'], value)
                         if not msg.startswith(c):
                             return
                     elif isinstance(value, list):
                         right_cmd = False
                         for cmd in value:
-                            c = "{}{}".format(Config.PREFIX, cmd)
+                            c = "{}{}".format(GENERAL_SETTINGS['PREFIX'], cmd)
                             if msg.startswith(c):
                                 right_cmd = True
                                 break
