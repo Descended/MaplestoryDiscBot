@@ -75,7 +75,8 @@ COMMANDS = [
     "notice",
     "online",
     "credits",
-    "credit"
+    "credit",
+    "info",
 ]
 
 # Text in help command
