@@ -25,6 +25,8 @@
     - `!online`
   - Display credits
     - `!credits` or `!credit`
+  - Display server info
+    - `!info`
   
 ### Admin Commands  
   - Transfer items
