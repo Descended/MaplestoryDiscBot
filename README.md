@@ -31,6 +31,7 @@ For full list of commands and how to use them, refer to the project [wiki](comma
 
 ## Gallery
 ![](https://cdn.discordapp.com/attachments/729217437966270464/775019302997852190/unknown.png)
+[![Spirit](https://img.youtube.com/vi/1yGeVdkj5_s/0.jpg)](https://www.youtube.com/watch?v=1yGeVdkj5_s)
 
 ---
 
