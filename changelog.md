@@ -59,3 +59,13 @@
 ## v0.0.15 Alpha  
   - Updated batch file to allow venv
   - Added details to `features` segment of README
+## v0.0.16 Alpha  
+  - Added `get_gm_level(name)` utility function
+  - Fixed `set_gm_level(name, level)` utility function
+  - Added command for awarding vote points
+  - Migrated repository (Raise **Minor** version number to "1")
+    - Old commit links (from before this point) are officially dead
+## v0.1.0 Alpha
+[More code documentation, and removed desc's weird use of for loops](https://github.com/Descended/MaplestoryDiscBot/commit/e26b3bc86523085be9c1a07ec3651f18dd8ac68e)  
+  - Documentation refactoring (shifted some contents of the README to the Wiki)
+  - Code optimisation (by removing unnecessary `for` loops)
