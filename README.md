@@ -9,38 +9,25 @@
   #### Current Version: v0.2.0 Alpha [(Change Log)](changelog.md)  
 
 ## SETUP
-### For the set-up guide refer to the project [wiki](https://github.com/Descended/MaplestoryDiscBot/wiki/Setup)
+For the set-up guide refer to the project [wiki](https://github.com/Descended/MaplestoryDiscBot/wiki/Setup)
 
 ## Features
+For full list of commands and how to use them, refer to the project [wiki](commands)
 ### General Commands
   - Display help page
-    - `!help` or `!commands`
   - Display character info
-    - `!character` or `!char` or `!player`
   - Display guild info
-    - `!guild` or `!guildinfo`
   - Display ranking
-    - `!rankings` or `!ranking` or `!ranktop`
   - Display online players
-    - `!online`
   - Display credits
-    - `!credits` or `!credit`
   - Display server info
-    - `!info`
   
 ### Admin Commands  
-  - Transfer items
-    - `!duey` or `!giveitem`
   - Disconnect player
-    - `!dc`
   - Whisper to player in-game
-    - `!whisper` or `!msg`
   - Post in-game notice
-    - `!notice`
   - Unban player in-game
-    - `!unban` or `!pardon`
   - Promote player to GM in-game
-    - `!setgmlevel` or `!makegm`
 
 ## Gallery
 *Images pending. To be appended when RC1 is ready.*
