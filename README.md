@@ -30,7 +30,7 @@ For full list of commands and how to use them, refer to the project [wiki](comma
   - Promote player to GM in-game
 
 ## Gallery
-*Images pending. To be appended when RC1 is ready.*
+![](https://cdn.discordapp.com/attachments/729217437966270464/775019302997852190/unknown.png)
 
 ---
 
