@@ -79,5 +79,25 @@ COMMANDS = [
     "info",
 ]
 
+# Turn commands on (True) or off (False)
+# Credits command excluded as it HAS to be on
+TOGGLE_ON_OFF = {
+    'help': True,
+    'info': True,
+    'char': True,
+    'guild': True,
+    'rank': True,
+    'online': True,
+    'duey': False,
+    'dc': True,
+    'whisper': True,
+    'notice': True,
+    'unban': True,
+    'makegm': True,
+    'givevp': True,
+    'giveaway': False,
+}
+DISABLED_TEXT = "This command has been disabled"
+
 # Text in help command
 BOT_VER = "v0.2.0 Alpha"
