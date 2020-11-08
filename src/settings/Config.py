@@ -9,6 +9,9 @@ PREFIX = "!"  # REQUIRED; prefix used for commands (e.g. prefix "!" for commands
 ADMIN_ROLE = "Admin"  # REQUIRED; role for admin commands
 LOG_COMMANDS = True  # Toggle logger on/off
 
+ADD_ROLE = True  # When this is true, the bot will attempt to give newly joined users a role
+ROLE_TO_GIVE = ""  # REQUIRED if ADD_ROLE is True, Enter Role Name
+
 SERVER_NAME = "SpiritMS"  # Display server name
 EMBED_COLOR = 0x03fcc6  # Colour of bot message (no need to touch)
 ICON_URL = "https://cdn.discordapp.com/icons/722153430457647104/ad8368ee9d687dc73aaa8f47ce0c0026.png?size=128"  # Display icon
