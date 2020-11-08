@@ -25,6 +25,7 @@ class CommandHandler:
         cmds = [func for func in dir(Command) if callable(getattr(Command, func)) and not func.startswith("__")]
 
         if Config.LOG_COMMANDS and Utils.is_command(msg.split(" ")[0]):
+            # If the message is a command we log it to command_log.txt
             Logger.log_command(author, msg.split(" ")[0])
 
         for cmd in cmds:

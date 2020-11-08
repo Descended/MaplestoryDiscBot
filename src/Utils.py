@@ -32,6 +32,12 @@ class Utils:
 
     @staticmethod
     def is_command(cmd):
+        """
+            Checks if a given string is a command the bot has.
+            Is used to check whether to log a command in command_log.txt
+            cmd: string
+            Return: boolean
+        """
         for command in Config.COMMANDS:
             if cmd == Config.PREFIX + command:
                 return True

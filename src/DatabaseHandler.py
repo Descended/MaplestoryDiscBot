@@ -1,10 +1,12 @@
 import mysql.connector
-import requests
 
 from src.settings import Config
 
 
 class DatabaseHandler:
+    """
+        Static class that handles all requests/calls to Database
+    """
 
     @staticmethod
     def get_character_stats(character_name):
@@ -128,6 +130,11 @@ class DatabaseHandler:
 
     @staticmethod
     def get_rankings(category):
+        """
+        Given a SQL Column (i.e. mesos, nx), order it Descending (Greatest to Least) and return the list
+        category: string
+        Return: dict, boolean
+        """
         try:
             con = mysql.connector.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER,
                                           password=Config.DATABASE_PASS, database=Config.DATABASE_NAME)
@@ -181,7 +188,8 @@ class DatabaseHandler:
                                           password=Config.DATABASE_PASS, database=Config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
             cursor.execute(
-                f"SELECT gm from characters WHERE name = '{name}'")  # selects gm level, most sources only have it so the characters are gm and not the accounts change this if ur source has account wide gm
+                f"SELECT gm from characters WHERE name = '{name}'")
+            # selects gm level, most sources only have it so the characters are gm and not the accounts change this if ur source has account wide gm
             rows = cursor.fetchall()
             if len(rows) == 0:  # checks if character exists
                 return False
@@ -202,7 +210,8 @@ class DatabaseHandler:
             con = mysql.connector.connect(host=Config.DATABASE_HOST, user=Config.DATABASE_USER,
                                           password=Config.DATABASE_PASS, database=Config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
-            cursor.execute(f"UPDATE characters SET gm = {level} where name = '{name}'")  # updates gm level, most sources only have it so the characters are gm and not the accounts change this if ur source has account wide gm
+            cursor.execute(f"UPDATE characters SET gm = {level} where name = '{name}'")
+            # updates gm level, most sources only have it so the characters are gm and not the accounts change this if ur source has account wide gm
             con.commit()  # commits all changes to the database
             con.disconnect()
             return f"Successfully gave GM level {level} to: {name}"
