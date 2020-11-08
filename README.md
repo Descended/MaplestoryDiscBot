@@ -49,3 +49,7 @@
 
 ### Notes prior to use
 Please read the license agreement prior to use, since the act of using this software implies agreement to the license. Note in particular the opening statement, as well as Section 13 of the AGPL license.
+
+---
+## CREDITS
+**BIG BIG BIG THANKS TO ASURA! (@Asura#6332 on Discord)**
