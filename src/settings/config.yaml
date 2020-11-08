@@ -1,33 +1,41 @@
+# General Settings
 general:
-  BOT_TOKEN: 1234567890
-  BOT_STATUS: SpiritMS
-  THUMBNAIL_URL: ""
-  PREFIX: "!"
-  ADMIN_ROLE: Admin
-  LOG_COMMANDS: true
+  BOT_TOKEN: 1234567890  # REQUIRED; see README for info on how to generate bot token
+  BOT_STATUS: SpiritMS  # What the bot will appear to be playing on discord
+  THUMBNAIL_URL: ""  # Used in !info command to display a picture in the embedded message, please fill out
+  PREFIX: "!"  # REQUIRED; prefix used for commands (e.g. prefix "!" for commands like "!online")
+  ADMIN_ROLE: Admin  # REQUIRED; role for admin commands
+  LOG_COMMANDS: true  # Toggle logger on/off (note that YAML uses lowercase for Booleans)
 
-  ADD_ROLE: false
-  ROLE_TO_GIVE: "Role Name Here"
+  ADD_ROLE: false  # When this is true, the bot will attempt to give newly joined users a role
+  ROLE_TO_GIVE: "Role Name Here"  # REQUIRED if ADD_ROLE is True, Enter Role Name
 
-  SERVER_NAME: SpiritMS
-  EMBED_COLOR: 0x03fcc6
-  ICON_URL: "https://cdn.discordapp.com/icons/722153430457647104/ad8368ee9d687dc73aaa8f47ce0c0026.png?size=128"
+  SERVER_NAME: SpiritMS  # Display server name
+  EMBED_COLOR: 0x03fcc6  # Colour of bot message (no need to touch)
+  ICON_URL: "https://cdn.discordapp.com/icons/722153430457647104/ad8368ee9d687dc73aaa8f47ce0c0026.png?size=128"  # Display icon
 
+# Connection Settings
 connection:
+  # For use in DatabaseHandler.py:
   database:
-    HOST: localhost
-    NAME: heavenms
-    USER: root
-    PASS: ""
+    HOST: localhost  # REQUIRED; DB Host (no need to touch if bot and DB are hosted on the same machine)
+    NAME: heavenms  # REQUIRED; DB connection/schema name
+    USER: root  # REQUIRED; DB connection username
+    PASS: ""  # REQUIRED; DB connection password
 
+  # For use in ApiHandler.py:
   API:
-     KEY: PUTAPIKEYHERE
-     HOST: "http://localhost:8080/"
+     KEY: PUTAPIKEYHERE  # REQUIRED; proprietary API key for web-requests
+     HOST: "http://localhost:8080/"  # REQUIRED; server location (no need to touch if bot and server are hosted on the same machine)
 
+  # For use with MapleStory.io API:
+  # Used for loading the graphical assets - no need to touch unless you're using a newer version
   IO_API:
     REGION: GMS
     VERSION: 216
 
+# Turn commands on (True) or off (False)
+# Credits command is excluded from the list as it HAS to be on
 # Note that YAMl uses lowercase for Booleans
 toggle:
   help: true

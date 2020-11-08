@@ -1,16 +1,22 @@
+# String constants
 literals:
-  SEVRER_OFFLINE_MESSAGE: "The server is currently offline"
-  DATABASE_OFFLINE_MESSAGE: "The database currently is offline"
-  COMMAND_DISABLED_TEXT: "This command has been disabled"
-  BOT_VER: "v0.2.0 Alpha"
+  SEVRER_OFFLINE_MESSAGE: "The server is currently offline"  # Error message (no need to touch)
+  DATABASE_OFFLINE_MESSAGE: "The database currently is offline"  # Error message (no need to touch)
+  COMMAND_DISABLED_TEXT: "This command has been disabled"  # Error message (no need to touch)
+  BOT_VER: "v0.2.0 Alpha"  # Text shown in the !help command
 
+# Server Information
+# Not required, but make sure to provide accurate info of your server.
 info:
-  VERSION: "GMS v83"
-  EXP: "6x"
-  DROP: "2x"
-  MESO: "1x"
-  LOCATION: "Insert Server Location Here"
-  STATE: "Open-Alpha Testing"
+  VERSION: "GMS v83"  # Displays Server Version
+  EXP: "6x"  # Displays Exp Rate of Server
+  DROP: "2x"  # Displays Drop Rate of Server
+  MESO: "1x"  # Displays Meso Rate of Server
+  LOCATION: "Insert Server Location Here"  # Location of the physical server
+  STATE: "Open-Alpha Testing"  # Add what the current state of the server is here
+
+  # List of commands tracked by the logger:
+  # Add new commands to the list to allow their usage to be tracked
   COMMANDS:
     - help
     - commands
@@ -33,6 +39,10 @@ info:
     - credit
     - info
 
+# Warning: Do NOT remove original credits! You are legally required to keep them!
+# A dictionary to store credits for the !credits command
+# add to this dictionary if you'd like to expand the credits command
+# "@DiscordUser": " - <role>"
 credits:
   "@Desc#0416": " - Author"
   "@Not Brandon#4444": " - Contributor"
