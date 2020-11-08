@@ -69,3 +69,13 @@
 [More code documentation, and removed desc's weird use of for loops](https://github.com/Descended/MaplestoryDiscBot/commit/e26b3bc86523085be9c1a07ec3651f18dd8ac68e)  
   - Documentation refactoring (shifted some contents of the README to the Wiki)
   - Code optimisation (by removing unnecessary `for` loops)
+## v0.2.0 Alpha
+[some bot updates](https://github.com/Descended/MaplestoryDiscBot/commit/f079569dd8b16cd079fe48c60d78f954c974155e)
+[added the ability for the bot to restart on crash](https://github.com/Descended/MaplestoryDiscBot/commit/ab77c8a53a21acf40572139550b7806ad6bff267)
+[Bot updates](https://github.com/Descended/MaplestoryDiscBot/commit/ba38ffc0e6d6abeb81362d397d022cd17707bf65)
+[set add_role to False as default](https://github.com/Descended/MaplestoryDiscBot/commit/59805a7a9e8a03a50879245d1f9736e59840f151)
+[added info command to list of commands to log](https://github.com/Descended/MaplestoryDiscBot/commit/c53f374f9ee79115303f2e8cb591229ba758b1fc)
+  - Added logic for `!info` command
+  - Added logic for auto-restart (turned off by default)
+  - Added logic for role-assignment (gateway intents MUST be enabled as of discord.py v1.5 and later)
+  - Documentation updates
