@@ -1,0 +1,39 @@
+literals:
+  SEVRER_OFFLINE_MESSAGE: "The server is currently offline"
+  DATABASE_OFFLINE_MESSAGE: "The database currently is offline"
+  COMMAND_DISABLED_TEXT: "This command has been disabled"
+  BOT_VER: "v0.2.0 Alpha"
+
+info:
+  VERSION: "GMS v83"
+  EXP: "6x"
+  DROP: "2x"
+  MESO: "1x"
+  LOCATION: "Insert Server Location Here"
+  STATE: "Open-Alpha Testing"
+  COMMANDS:
+    - help
+    - commands
+    - character
+    - char
+    - player
+    - guild
+    - guildinfo
+    - duey
+    - giveitem
+    - rankings
+    - ranking
+    - ranktop
+    - dc
+    - whisper
+    - msg
+    - notice
+    - online
+    - credits
+    - credit
+    - info
+
+credits:
+  "@Desc#0416": " - Author"
+  "@Not Brandon#4444": " - Contributor"
+  "@KOOKIIE#9770": " - Contributor"
