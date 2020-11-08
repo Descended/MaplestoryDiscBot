@@ -382,10 +382,13 @@ class Command:
             player = args[1]
             level = int(args[2])
             r = API.set_gm_level(player, level)
-            if "Server is" or "found" in r:
-                r = DatabaseHandler.set_gm_level(player, level)
-            await txt_channel.send(r)
-            return True
+            if "Successfully" in r:
+                await txt_channel.send(r)
+                return True
+            else:
+                e = DatabaseHandler.set_gm_level(player, level)
+                await txt_channel.send(e)
+                return True
         else:
             await txt_channel.send(Config.DISABLED_TEXT)
             return False

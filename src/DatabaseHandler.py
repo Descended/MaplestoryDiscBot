@@ -203,7 +203,7 @@ class DatabaseHandler:
     def set_gm_level(name, level):
         try:
             lvl = DatabaseHandler.get_gm_level(name)
-            if not lvl:
+            if lvl is False:
                 return f"Character {name} not found"
             if lvl == level:
                 return f"{name} is already GM level: {level}"
