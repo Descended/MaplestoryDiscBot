@@ -5,9 +5,11 @@
   MaplestoryDiscBot is a Python-based Discord Bot designed for MapleStory private servers.
   
   This bot allows direct access to and/or manipulation of data via the database, as well as through web-requests (proprietary API).
+  
+  #### Current Version: v0.0.15 Alpha [(Change Log)](changelog.md)  
 
 ## SETUP
-### For the setup guide see the guide on the [wiki](https://github.com/Descended/MaplestoryDiscBot/wiki/Setup)
+### For the set-up guide refer to the project [wiki](https://github.com/Descended/MaplestoryDiscBot/wiki/Setup)
 
 ## Features
 ### General Commands
@@ -40,35 +42,6 @@
 
 ## Gallery
 *Images pending. To be appended when RC1 is ready.*
-## Miscellaneous
-### Technical Details
-##### Current Version: v0.0.15 Alpha  
-Changelog: [changelog.md](changelog.md)
-
-|  | Targeted | Tested |
-|---|---|---|
-| Python | 3.6 | ? |  
-
-### Auto-launch:
-Run the batch file `start.bat`
-
----
-### Manual launch:
-#### Option A: Using the virtual environment
-The virtual environment is part of the repository (as of time of writing).  
-You may use it after cloning without needing to set it up yourself.
-##### Command Prompt route:
-  - Activate the virtual environment using `call venv\scripts\activate.bat`
-    - Note: You can deactivate the venv by using the command deactivate
-  - Use the command `venv\scripts\python src/Main.py` to run
-##### PowerShell route: 
-  - Activate the virtual environment using `venv\scripts\activate`
-    - Note: You can deactivate the venv by using the command deactivate
-  - Use the command `venv\scripts\python src/Main.py` to run  
-    
-  
-#### Option B: Using the global environment
-  - `python src/Main.py`
 
 ---
 
