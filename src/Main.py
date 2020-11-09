@@ -28,7 +28,7 @@ async def track_online_players():
     try:
         await client.change_presence(activity=discord.Game(name=API.get_server_info()))
     except Exception as e:
-        print(e)
+        print(f"Error encountered whilst tracking online players: \n{e}")
 
 
 @client.event
