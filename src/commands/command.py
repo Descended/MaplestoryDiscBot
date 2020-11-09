@@ -98,7 +98,7 @@ class Command:
             await txt_channel.send("Invalid characters detected in character name!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
             return False
-        elif character_name[1] == ":":  # checks for Discord emoji at the start of the message
+        elif character_name[1] == ":" or ":" in character_name:  # checks for Discord emoji in message
             await txt_channel.send("Are you trying to send a Discord emoji? :liar:")
             spirit_logger.warn(f"{author} may have tried to send a Discord emoji: {msg}")
             return False
@@ -170,7 +170,7 @@ class Command:
             await txt_channel.send("Invalid characters detected in guild name!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
             return False
-        elif guild_name[1] == ":":  # checks for Discord emoji at the start of the message
+        elif guild_name[1] == ":" or ":" in guild_name:  # checks for Discord emoji in message
             await txt_channel.send("Are you trying to send a Discord emoji? :liar:")
             spirit_logger.warn(f"{author} may have tried to send a Discord emoji: {msg}")
             return False
@@ -228,7 +228,7 @@ class Command:
             await txt_channel.send("Invalid characters detected in rank category!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
             return False
-        elif category[1] == ":":  # checks for Discord emoji at the start of the message
+        elif category[1] == ":" or ":" in category:  # checks for Discord emoji in message
             await txt_channel.send("Are you trying to send a Discord emoji? :liar:")
             spirit_logger.warn(f"{author} may have tried to send a Discord emoji: {msg}")
             return False
