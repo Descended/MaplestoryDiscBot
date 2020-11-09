@@ -21,7 +21,6 @@ def command(**kwargs):
             author = args[2]
             msg = args[3]
 
-            spirit_logger.debug(f"author: {author}; msg: {msg}")
             for key, value in kwargs.items():
 
                 # spirit_logger.debug(f"Key: {key}; Value: {value}")

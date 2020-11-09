@@ -16,6 +16,7 @@ class CommandHandler:
         msg = message.content
         guild = message.guild
         txt_channel = message.channel
+        spirit_logger.debug(f"author: {author}; msg: {msg}")  # log every command; comment out to disable
 
         if not str(msg).startswith(config.PREFIX):
             return

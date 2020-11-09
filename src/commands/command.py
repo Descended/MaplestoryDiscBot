@@ -95,8 +95,9 @@ class Command:
         # Optional ASCII-check for char name (comment out if undesired)
         # Since GMS should only have ASCII names
         if not Utils.is_ascii(character_name):
-            txt_channel.send("Invalid characters detected in character name!")
+            await txt_channel.send("Invalid characters detected in character name!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
+            return False
 
         rows, result = DatabaseHandler.get_character_stats(character_name)
         # A tuple is returned, result being false means the database is off and vice versa
@@ -162,8 +163,9 @@ class Command:
         # Optional ASCII-check for guild name (comment out if undesired)
         # Since GMS should only have ASCII names
         if not Utils.is_ascii(guild_name):
-            txt_channel.send("Invalid characters detected in guild name!")
+            await txt_channel.send("Invalid characters detected in guild name!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
+            return False
 
         rows, result = DatabaseHandler.get_guild_info(guild_name)
         if not result:  # If the result is false the database is offline
@@ -215,8 +217,9 @@ class Command:
 
         # Optional ASCII-check for rank type (comment out if undesired)
         if not Utils.is_ascii(category):
-            txt_channel.send("Invalid characters detected in rank category!")
+            await txt_channel.send("Invalid characters detected in rank category!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
+            return False
 
         table, result = DatabaseHandler.get_rankings(category)
         if "column" in str(table):  # checks if the word "column" is in the table this means the column was not found
@@ -465,13 +468,17 @@ class Command:
     async def handle_logger_on(client, txt_channel, author, msg, message) \
             -> "Turns the advanced logger on":
         try:
-            spirit_logger.addHandler(logger.get_console_handler())
-            spirit_logger.addHandler(logger.get_file_handler())
-            spirit_logger.propagate = True
-            spirit_logger.info("Logger turned on!")
-            config.LOG_FLAG = True
-            txt_channel.send("Advanced logger will now START verbose logging!")
-            return True
+            if not config.LOG_FLAG:
+                spirit_logger.addHandler(logger.get_console_handler())
+                spirit_logger.addHandler(logger.get_file_handler())
+                spirit_logger.propagate = True
+                spirit_logger.info("Logger turned on!")
+                config.LOG_FLAG = True
+                await txt_channel.send("Advanced logger will now START verbose logging!")
+                return True
+            else:
+                await txt_channel.send(f"Advanced logger is already logging, {author}!!")
+                spirit_logger.warn(f"Advanced logger is already logging, {author}!!")
         except Exception as e:
             print(f"Error occurred whilst trying to turn logger on: \n{e}")
             return False
@@ -485,13 +492,17 @@ class Command:
     async def handle_logger_off(client, txt_channel, author, msg, message) \
             -> "Turns the advanced logger off":
         try:
-            spirit_logger.info("Turning logger off!")
-            spirit_logger.removeHandler(logger.get_console_handler())
-            spirit_logger.removeHandler(logger.get_file_handler())
-            spirit_logger.propagate = False
-            config.LOG_FLAG = False
-            txt_channel.send("Advanced logger will now STOP verbose logging!")
-            return True
+            if config.LOG_FLAG:
+                spirit_logger.info("Turning logger off!")
+                spirit_logger.removeHandler(logger.get_console_handler())
+                spirit_logger.removeHandler(logger.get_file_handler())
+                spirit_logger.propagate = False
+                config.LOG_FLAG = False
+                await txt_channel.send("Advanced logger will now STOP verbose logging!")
+                return True
+            else:
+                await txt_channel.send(f"Advanced logger is already inactive, {author}!!")
+                spirit_logger.warn(f"Advanced logger is already inactive, {author}!!")
         except Exception as e:
             print(f"Error occurred whilst trying to turn logger off: \n{e}")
             return False
