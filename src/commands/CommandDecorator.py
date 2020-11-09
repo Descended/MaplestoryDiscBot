@@ -36,6 +36,13 @@ def command(**kwargs):
                         if not right_cmd:
                             return
 
+                # Toggle status check - KOOKIIE
+                if "toggle" in key:
+                    if isinstance(value, bool):
+                        if not value:  # if toggle status is false
+                            await txt_channel.send(Config.DISABLED_TEXT)
+                            return
+
                 # Role checks
                 if "role" in key:  # Role the author must have for the command to be executed
                     if isinstance(value, str):

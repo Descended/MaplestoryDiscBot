@@ -80,22 +80,22 @@ COMMANDS = [
 ]
 
 # Turn commands on (True) or off (False)
-# Credits command excluded as it HAS to be on
+# To add new commands, use the handler method name as key
 TOGGLE_ON_OFF = {
-    'help': True,
-    'info': True,
-    'char': True,
-    'guild': True,
-    'rank': True,
-    'online': True,
-    'duey': False,
-    'dc': True,
-    'whisper': True,
-    'notice': True,
-    'unban': True,
-    'makegm': True,
-    'givevp': True,
-    'giveaway': False,
+    'handle_help': True,
+    'handle_info': True,
+    'handle_character': True,
+    'handle_guild': True,
+    'handle_ranking': True,
+    'handle_online': True,
+    'handle_duey': False,
+    'handle_dc': True,
+    'handle_whisper': True,
+    'handle_notice': True,
+    'handle_unban': True,
+    'handle_setgmlevel': True,
+    'handle_give_vp': True,
+    'handle_giveaway': False,
 }
 DISABLED_TEXT = "This command has been disabled"
 
