@@ -12,7 +12,7 @@
 For the set-up guide refer to the project [wiki](https://github.com/Descended/MaplestoryDiscBot/wiki/Setup)
 
 ## Features
-For full list of commands and how to use them, refer to the project [wiki](commands)
+For full list of commands and how to use them, refer to the project [wiki](https://github.com/Descended/MaplestoryDiscBot/wiki/List-of-Commands)
 ### General Commands
   - Display help page
   - Display character info
