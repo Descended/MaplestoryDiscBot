@@ -210,10 +210,10 @@ class Command:
             e.set_thumbnail(url=Config.ICON_URL)
             for x in range(5):
                 name = table[x]["name"]
-                type = table[x][category]
+                rank_type = table[x][category]
                 job = Utils.get_job_by_id(table[x]["job"])
 
-                e.add_field(name=f"{Utils.get_ordinal_number(x + 1)}.  {name} ({job})", value=f"{category}: {type}",
+                e.add_field(name=f"{Utils.get_ordinal_number(x + 1)}.  {name} ({job})", value=f"{category}: {rank_type}",
                             inline=False)
             await txt_channel.send(embed=e)
             return True
