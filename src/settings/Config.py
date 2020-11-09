@@ -12,6 +12,10 @@ LOG_COMMANDS = True  # Toggle logger on/off
 ADD_ROLE = False  # When this is true, the bot will attempt to give newly joined users a role
 ROLE_TO_GIVE = "Role Name Here"  # REQUIRED if ADD_ROLE is True, Enter Role Name
 
+SHOW_ONLINE_PLAYERS = False  # Turn this to true, if you want the bot to display online players count in the presence
+# I.E. "Playing Players Online: 53"
+SEC_PER_UPDATE = 5  # In seconds, how long should the bot wait till updating player count in presence
+
 SERVER_NAME = "SpiritMS"  # Display server name
 EMBED_COLOR = 0x03fcc6  # Colour of bot message (no need to touch)
 ICON_URL = "https://cdn.discordapp.com/icons/722153430457647104/ad8368ee9d687dc73aaa8f47ce0c0026.png?size=128"  # Display icon
