@@ -98,6 +98,10 @@ class Command:
             await txt_channel.send("Invalid characters detected in character name!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
             return False
+        elif character_name[1] == ":":  # checks for Discord emoji at the start of the message
+            await txt_channel.send("Are you trying to send a Discord emoji? :liar:")
+            spirit_logger.warn(f"{author} may have tried to send a Discord emoji: {msg}")
+            return False
 
         rows, result = DatabaseHandler.get_character_stats(character_name)
         # A tuple is returned, result being false means the database is off and vice versa
@@ -166,6 +170,10 @@ class Command:
             await txt_channel.send("Invalid characters detected in guild name!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
             return False
+        elif guild_name[1] == ":":  # checks for Discord emoji at the start of the message
+            await txt_channel.send("Are you trying to send a Discord emoji? :liar:")
+            spirit_logger.warn(f"{author} may have tried to send a Discord emoji: {msg}")
+            return False
 
         rows, result = DatabaseHandler.get_guild_info(guild_name)
         if not result:  # If the result is false the database is offline
@@ -219,6 +227,10 @@ class Command:
         if not Utils.is_ascii(category):
             await txt_channel.send("Invalid characters detected in rank category!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
+            return False
+        elif category[1] == ":":  # checks for Discord emoji at the start of the message
+            await txt_channel.send("Are you trying to send a Discord emoji? :liar:")
+            spirit_logger.warn(f"{author} may have tried to send a Discord emoji: {msg}")
             return False
 
         table, result = DatabaseHandler.get_rankings(category)
