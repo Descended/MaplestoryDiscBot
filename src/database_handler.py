@@ -14,7 +14,7 @@ class DatabaseHandler:
     @staticmethod
     def get_character_stats(character_name):
         try:
-            spirit_logger.debug(f"Attempting to get char stats from name via DB: {character_name}")
+            # spirit_logger.debug(f"Attempting to get char stats from name via DB: {character_name}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -31,7 +31,7 @@ class DatabaseHandler:
     @staticmethod
     def get_character_look(character_id, hair, face, skin):
         try:
-            spirit_logger.debug(f"Attempting to get char look via DB. ID: {character_id}; Hair: {hair}; Face: {face}; Skin: {skin}")
+            # spirit_logger.debug(f"Attempting to get char look via DB. ID: {character_id}; Hair: {hair}; Face: {face}; Skin: {skin}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -54,10 +54,11 @@ class DatabaseHandler:
 
     @staticmethod
     def get_guild_name(guild_id):
-        if guild_id == 0:  # Guildless
+        if guild_id == 0:  # No guild
+            # spirit_logger.debug("Invalid guild")
             return "None"
         try:
-            spirit_logger.debug(f"Attempting to get guild name from id: {guild_id}")
+            # spirit_logger.debug(f"Attempting to get guild name from id: {guild_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -76,7 +77,7 @@ class DatabaseHandler:
     @staticmethod
     def get_guild_info(name):
         try:
-            spirit_logger.debug(f"Attempting to get guild info from id: {guild_id}")
+            # spirit_logger.debug(f"Attempting to get guild info from id: {guild_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -92,9 +93,9 @@ class DatabaseHandler:
 
     @staticmethod
     def get_alliance_name(alliance_id):
-        spirit_logger.debug(f"Attempting to get alliance info from id: {alliance_id}")
+        # spirit_logger.debug(f"Attempting to get alliance info from id: {alliance_id}")
         if alliance_id == 0:
-            spirit_logger.debug("Invalid ID")
+            # spirit_logger.debug("Invalid alliance")
             return "None"
         else:
             try:
@@ -115,7 +116,7 @@ class DatabaseHandler:
     @staticmethod
     def get_character_name(char_id):
         try:
-            spirit_logger.debug(f"Attempting to get character name from id: {char_id}")
+            # spirit_logger.debug(f"Attempting to get character name from id: {char_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -133,7 +134,7 @@ class DatabaseHandler:
     @staticmethod
     def get_account_id(character_name):
         try:
-            spirit_logger.debug(f"Attempting to get account ID from character name: {character_name}")
+            # spirit_logger.debug(f"Attempting to get account ID from character name: {character_name}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -153,7 +154,7 @@ class DatabaseHandler:
     @staticmethod
     def unban_account(name):
         try:
-            spirit_logger.debug(f"Attempting to unban account by name: {name}")
+            # spirit_logger.debug(f"Attempting to unban account by name: {name}")
             account_id = DatabaseHandler.get_account_id(name)  # Don't use "id" as it is reserved by Python
             if not account_id:  # checks if id is false which means the character was not found
                 return f"Couldn't find {name}"
@@ -180,7 +181,7 @@ class DatabaseHandler:
         Return: dict, boolean
         """
         try:
-            spirit_logger.debug(f"Attempting to get rankings by category: {category}")
+            # spirit_logger.debug(f"Attempting to get rankings by category: {category}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -197,7 +198,7 @@ class DatabaseHandler:
     @staticmethod
     def get_vp(account_id):
         try:
-            spirit_logger.debug(f"Attempting to get vote points by id: {account_id}")
+            # spirit_logger.debug(f"Attempting to get vote points by id: {account_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -215,7 +216,7 @@ class DatabaseHandler:
     @staticmethod
     def give_vp(name, amount):
         try:
-            spirit_logger.debug(f"Attempting to allocate {amount} vote points by name: {name}")
+            # spirit_logger.debug(f"Attempting to allocate {amount} vote points by name: {name}")
             account_id = DatabaseHandler.get_account_id(name)
             if not account_id:
                 return f"Character {name} not found"
@@ -237,7 +238,7 @@ class DatabaseHandler:
     @staticmethod
     def get_gm_level(name):
         try:
-            spirit_logger.debug(f"Attempting to get GM level by name: {name}")
+            # spirit_logger.debug(f"Attempting to get GM level by name: {name}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -259,7 +260,7 @@ class DatabaseHandler:
     @staticmethod
     def set_gm_level(name, level):
         try:
-            spirit_logger.debug(f"Attempting to set GM level to {level} by name: {name}")
+            # spirit_logger.debug(f"Attempting to set GM level to {level} by name: {name}")
             lvl = DatabaseHandler.get_gm_level(name)
             if lvl is False:
                 return f"Character {name} not found"

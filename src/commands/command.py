@@ -261,6 +261,7 @@ class Command:
     #         -> "Give items through Duey":
     #     args = msg.split(" ")
     #     if len(args) <= 4:
+    #         # spirit_logger.warn(f"{author} has made and invalid !duey command attempt: {msg}")
     #         await txt_channel.send("Usage: !duey <name> <item> <quantity>")
     #         return False
     #     s = API.duey(amount=1, name="Desc")
@@ -278,6 +279,7 @@ class Command:
             -> "DC a player":
         args = msg.split(" ")
         if len(args) < 2:
+            # spirit_logger.warn(f"{author} has made and invalid !dc command attempt: {msg}")
             await txt_channel.send("Usage: !dc <character>")
             return False
         player = args[1]
@@ -295,6 +297,7 @@ class Command:
             -> "Whisper a player in game":
         args = msg.split(" ")
         if len(args) < 2:
+            # spirit_logger.warn(f"{author} has made and invalid !whisper command attempt: {msg}")
             await txt_channel.send("Usage: !whisper <name> <message>")
             return False
         player = args[1]
@@ -317,6 +320,7 @@ class Command:
             -> "Send a message to all players":
         args = msg.split(" ")
         if len(args) <= 1:
+            # spirit_logger.warn(f"{author} has made and invalid !notice command attempt: {msg}")
             await txt_channel.send("Usage: !notice <message>")
             return False
         i = 1
@@ -338,6 +342,7 @@ class Command:
             -> "Unbans a player":
         args = msg.split(" ")
         if len(args) < 2:
+            # spirit_logger.warn(f"{author} has made and invalid !unban command attempt: {msg}")
             await txt_channel.send("Usage: !unban <player>")
             return False
         player = args[1]
@@ -356,6 +361,7 @@ class Command:
 
         args = msg.split(" ")
         if len(args) < 3:
+            # spirit_logger.warn(f"{author} has made and invalid !getgmlevel command attempt: {msg}")
             await txt_channel.send("Usage: !setgmlevel <player> <level>")
             return False
         player = args[1]
@@ -380,7 +386,8 @@ class Command:
 
         args = msg.split(" ")
         if len(args) < 3:
-            await txt_channel.send("Usage: !givevp <name> <amount>")
+            # await txt_channel.send("Usage: !givevp <name> <amount>")
+            spirit_logger.warn(f"{author} has made and invalid !givevp command attempt: {msg}")
             return False
         player = args[1]
         vp = int(args[2])

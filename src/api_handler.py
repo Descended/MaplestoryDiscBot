@@ -12,7 +12,7 @@ class API:
 
     @staticmethod
     def get_server_info():
-        spirit_logger.debug("Attempting to fetch server info via API")
+        # spirit_logger.debug("Attempting to fetch server info via API")
         try:
             payload = {
                 "key": config.API_KEY
@@ -29,7 +29,7 @@ class API:
 
     @staticmethod
     def dc_player(name):
-        spirit_logger.debug("Attempting to disconnecting player via API")
+        # spirit_logger.debug("Attempting to disconnecting player via API")
         try:
             payload = {
                 "key": config.API_KEY,
@@ -52,7 +52,7 @@ class API:
 
     @staticmethod
     def whisper(name, message):
-        spirit_logger.debug("Attempting to whisper via API")
+        # spirit_logger.debug("Attempting to whisper via API")
         try:
             payload = {
                 "key": config.API_KEY,
@@ -71,7 +71,7 @@ class API:
 
     @staticmethod
     def notice(message):
-        spirit_logger.debug("Attempting to send in-game notice via API")
+        # spirit_logger.debug("Attempting to send in-game notice via API")
         try:
             payload = {
                 "key": config.API_KEY,
@@ -89,7 +89,7 @@ class API:
 
     @staticmethod
     def duey(item, amount, name):
-        spirit_logger.debug("Attempting to send item(s) in-game via API")
+        # spirit_logger.debug("Attempting to send item(s) in-game via API")
         try:
             payload = {
                 "key": config.API_KEY,
@@ -109,7 +109,7 @@ class API:
 
     @staticmethod
     def set_gm_level(name, level):
-        spirit_logger.debug("Attempting to set GM level via API")
+        # spirit_logger.debug("Attempting to set GM level via API")
         try:
             payload = {
                 "key": config.API_KEY,
@@ -128,7 +128,7 @@ class API:
 
     @staticmethod
     def give_vp(name, amount):
-        spirit_logger.debug("Attempting to allocate vote points in-game via API")
+        # spirit_logger.debug("Attempting to allocate vote points in-game via API")
         try:
             payload = {
                 "key": config.API_KEY,
