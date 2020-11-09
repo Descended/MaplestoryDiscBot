@@ -1,6 +1,6 @@
 import json
 
-from src.settings import Config
+from src.settings import config
 
 
 class Utils:
@@ -23,7 +23,7 @@ class Utils:
 
     @staticmethod
     def get_guild_logo(guild_mark_id, guild_mark_color_id, guild_background_id, guild_background_color_id):
-        url = f"https://maplestory.io/api/{Config.REGION}/{Config.VERSION}/GuildMark/background/{guild_background_id}/{guild_background_color_id}/mark/{guild_mark_id}/{guild_mark_color_id}"
+        url = f"https://maplestory.io/api/{config.REGION}/{config.VERSION}/GuildMark/background/{guild_background_id}/{guild_background_color_id}/mark/{guild_mark_id}/{guild_mark_color_id}"
         return url
 
     @staticmethod
@@ -38,7 +38,7 @@ class Utils:
             cmd: string
             Return: boolean
         """
-        for command in Config.COMMANDS:
-            if cmd == Config.PREFIX + command:
+        for command in config.COMMANDS:
+            if cmd == config.PREFIX + command:
                 return True
         return False

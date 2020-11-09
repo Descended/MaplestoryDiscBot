@@ -1,9 +1,9 @@
 from discord import Member, Guild, TextChannel
 
-from src.CommandLogger import Logger
-from src.Utils import Utils
-from src.commands.Command import Command
-from src.settings import Config
+from src.command_logger import Logger
+from src.utils import Utils
+from src.commands.command import Command
+from src.settings import config
 
 
 class CommandHandler:
@@ -14,7 +14,7 @@ class CommandHandler:
         guild = message.guild
         txt_channel = message.channel
 
-        if not str(msg).startswith(Config.PREFIX):
+        if not str(msg).startswith(config.PREFIX):
             return
 
         can_use = author != client
@@ -25,7 +25,7 @@ class CommandHandler:
         # Get the list of Command methods in the Command module
         cmds = [func for func in dir(Command) if callable(getattr(Command, func)) and not func.startswith("__")]
 
-        if Config.LOG_COMMANDS and Utils.is_command(msg.split(" ")[0]):
+        if config.LOG_COMMANDS and Utils.is_command(msg.split(" ")[0]):
             # If the message is a command we log it to command_log.txt
             Logger.log_command(author, msg.split(" ")[0])
 

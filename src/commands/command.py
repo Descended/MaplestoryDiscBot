@@ -1,11 +1,11 @@
 import discord
 
-from src.ApiHandler import API
-from src.Utils import Utils
-from src.DatabaseHandler import DatabaseHandler
+from src.api_handler import API
+from src.utils import Utils
+from src.database_handler import DatabaseHandler
 
-from src.commands.CommandDecorator import command
-from src.settings import Config
+from src.commands.command_decorator import command
+from src.settings import config
 
 
 # General and Admin commands
@@ -35,7 +35,7 @@ class Command:
     @staticmethod
     @command(
         cmd=["help", "commands"],  # Command Aliases
-        toggle=Config.TOGGLE_ON_OFF['handle_help']  # Toggle status (use handler method name)
+        toggle=config.TOGGLE_ON_OFF['handle_help']  # Toggle status (use handler method name)
         # channel = ""
         # role = ""
         # excl_channel = ""
@@ -43,7 +43,7 @@ class Command:
     )
     async def handle_help(client, txt_channel, author, msg, message) \
             -> "Shows All Commands":  # Standard Help Command to start it off
-        reply = "Commands are prefixed with a {}\n\n".format(Config.PREFIX)
+        reply = "Commands are prefixed with a {}\n\n".format(config.PREFIX)
 
         cmds = [func for func in dir(Command) if callable(getattr(Command, func)) and not func.startswith("__")]
         for cmd in sorted(cmds):
@@ -55,31 +55,31 @@ class Command:
             help_txt = annotations['return']
             cmd_txt = "/".join(decorators['cmd']) if isinstance(decorators['cmd'], list) else decorators['cmd']
             reply += "{} - {}\n".format(cmd_txt, help_txt)
-        e = discord.Embed(title="Commands List", description="List of available commands", colour=Config.EMBED_COLOR)
+        e = discord.Embed(title="Commands List", description="List of available commands", colour=config.EMBED_COLOR)
         e.add_field(name="Commands", value=reply, inline=True)
-        e.set_thumbnail(url=Config.THUMBNAIL_URL)
-        e.set_footer(text=f"Bot Version: {Config.BOT_VER}\n", icon_url=Config.ICON_URL)
+        e.set_thumbnail(url=config.THUMBNAIL_URL)
+        e.set_footer(text=f"Bot Version: {config.BOT_VER}\n", icon_url=config.ICON_URL)
         await txt_channel.send(embed=e)
         return True
 
     @staticmethod
-    @command(cmd=["info"], toggle=Config.TOGGLE_ON_OFF['handle_info'])
+    @command(cmd=["info"], toggle=config.TOGGLE_ON_OFF['handle_info'])
     async def handle_info(client, txt_channel, author, msg, message) \
             -> "Shows server information":
-        embed = discord.Embed(title="Server Info", description=Config.INFO_VERSION, colour=Config.EMBED_COLOR)
-        embed.set_thumbnail(url=Config.THUMBNAIL_URL)
-        embed.add_field(name="Exp", value=Config.INFO_EXP, inline=True)  # Exp
-        embed.add_field(name="Drop", value=Config.INFO_DROP, inline=True)  # Drop
-        embed.add_field(name="Meso", value=Config.INFO_MESO, inline=True)  # Meso
-        embed.add_field(name="Server State", value=Config.INFO_STATE, inline=False)
-        embed.add_field(name="Server Location", value=Config.INFO_LOCATION, inline=False)
+        embed = discord.Embed(title="Server Info", description=config.INFO_VERSION, colour=config.EMBED_COLOR)
+        embed.set_thumbnail(url=config.THUMBNAIL_URL)
+        embed.add_field(name="Exp", value=config.INFO_EXP, inline=True)  # Exp
+        embed.add_field(name="Drop", value=config.INFO_DROP, inline=True)  # Drop
+        embed.add_field(name="Meso", value=config.INFO_MESO, inline=True)  # Meso
+        embed.add_field(name="Server State", value=config.INFO_STATE, inline=False)
+        embed.add_field(name="Server Location", value=config.INFO_LOCATION, inline=False)
         await txt_channel.send(embed=embed)
         return True
 
     @staticmethod
     @command(
         cmd=["character", "char", "player"],
-        toggle=Config.TOGGLE_ON_OFF['handle_character']
+        toggle=config.TOGGLE_ON_OFF['handle_character']
     )
     async def handle_character(client, txt_channel, author, msg, message) \
             -> "Shows character info":
@@ -92,7 +92,7 @@ class Command:
         # A tuple is returned, result being false means the database is off and vice versa
 
         if not result:
-            await txt_channel.send(Config.DATABASE_OFFLINE_MESSAGE)
+            await txt_channel.send(config.DATABASE_OFFLINE_MESSAGE)
             return False
         elif len(rows) == 0:
             await txt_channel.send("Character not found")
@@ -120,10 +120,10 @@ class Command:
         # character_img is a link from maplestory.io API that lets us draw any character given the correct params
 
         guild_name = DatabaseHandler.get_guild_name(guildid)
-        e = discord.Embed(title="Character stats", colour=Config.EMBED_COLOR)
+        e = discord.Embed(title="Character stats", colour=config.EMBED_COLOR)
         e.set_thumbnail(url=character_img)
-        e.set_footer(text=Config.SERVER_NAME,
-                     icon_url=Config.ICON_URL)
+        e.set_footer(text=config.SERVER_NAME,
+                     icon_url=config.ICON_URL)
         e.add_field(name="Name", value=name, inline=True)
         e.add_field(name="Level", value=level, inline=True)
         e.add_field(name="Job", value=Utils.get_job_by_id(job), inline=True)
@@ -139,7 +139,7 @@ class Command:
     @staticmethod
     @command(
         cmd=["guild", "guildinfo"],
-        toggle=Config.TOGGLE_ON_OFF['handle_guild']
+        toggle=config.TOGGLE_ON_OFF['handle_guild']
     )
     async def handle_guild(client, txt_channel, author, msg, message) \
             -> "Shows guild info":
@@ -150,7 +150,7 @@ class Command:
         guild_name = args[1]
         rows, result = DatabaseHandler.get_guild_info(guild_name)
         if not result:  # If the result is false the database is offline
-            await txt_channel.send(Config.DATABASE_OFFLINE_MESSAGE)
+            await txt_channel.send(config.DATABASE_OFFLINE_MESSAGE)
             return False
         elif len(rows) == 0:
             await txt_channel.send("Guild not found")
@@ -171,9 +171,9 @@ class Command:
 
         guild_img = Utils.get_guild_logo(guild_mark_id=logo, guild_mark_color_id=logo_color,
                                          guild_background_id=logo_bg, guild_background_color_id=logo_bg_color)
-        e = discord.Embed(title="Guild info", colour=Config.EMBED_COLOR)
-        e.set_footer(text=Config.SERVER_NAME,
-                     icon_url=Config.ICON_URL)
+        e = discord.Embed(title="Guild info", colour=config.EMBED_COLOR)
+        e.set_footer(text=config.SERVER_NAME,
+                     icon_url=config.ICON_URL)
         e.set_thumbnail(url=guild_img)
         e.add_field(name="Name", value=guild, inline=True)
         e.add_field(name="Leader", value=DatabaseHandler.get_character_name(guild_leader), inline=True)
@@ -185,7 +185,7 @@ class Command:
     @staticmethod
     @command(
         cmd=["rankings", "ranking", "ranktop"],
-        toggle=Config.TOGGLE_ON_OFF['handle_ranking']
+        toggle=config.TOGGLE_ON_OFF['handle_ranking']
     )
     async def handle_ranking(client, txt_channel, author, msg, message) \
             -> "Shows the rankings":
@@ -200,10 +200,10 @@ class Command:
             await txt_channel.send("Can't find the category")
             return False
         elif not result:
-            await txt_channel.send(Config.DATABASE_OFFLINE_MESSAGE)
+            await txt_channel.send(config.DATABASE_OFFLINE_MESSAGE)
             return False
-        e = discord.Embed(title=f"Rankings by {category}", colour=Config.EMBED_COLOR)
-        e.set_thumbnail(url=Config.ICON_URL)
+        e = discord.Embed(title=f"Rankings by {category}", colour=config.EMBED_COLOR)
+        e.set_thumbnail(url=config.ICON_URL)
         for x in range(5):
             name = table[x]["name"]
             rank_type = table[x][category]
@@ -217,7 +217,7 @@ class Command:
     @staticmethod
     @command(
         cmd=["online"],
-        toggle=Config.TOGGLE_ON_OFF['handle_online']
+        toggle=config.TOGGLE_ON_OFF['handle_online']
     )
     async def handle_online(client, txt_channel, author, msg, message) \
             -> "Shows online players":
@@ -233,10 +233,10 @@ class Command:
     async def handle_credits(client, txt_channel, author, msg, message) \
             -> "Shows the credits":
         credits_info = ""
-        for key in Config.CREDITS:
-            credits_info += f"{key} {Config.CREDITS[key]}\n"
+        for key in config.CREDITS:
+            credits_info += f"{key} {config.CREDITS[key]}\n"
 
-        e = discord.Embed(title="Credits", colour=Config.EMBED_COLOR, url="https://github.com/Descended"
+        e = discord.Embed(title="Credits", colour=config.EMBED_COLOR, url="https://github.com/Descended"
                                                                           "/MaplestoryDiscBot")
         e.set_thumbnail(url="https://cdn.discordapp.com/emojis/755698200970657863.png?v=1")
         e.add_field(name="Contributors", value=credits_info, inline=True)
@@ -268,8 +268,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["dc"],
-        toggle=Config.TOGGLE_ON_OFF['handle_dc'],
-        role=[Config.ADMIN_ROLE]
+        toggle=config.TOGGLE_ON_OFF['handle_dc'],
+        role=[config.ADMIN_ROLE]
     )
     async def handle_dc(client, txt_channel, author, msg, message) \
             -> "DC a player":
@@ -285,8 +285,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["whisper", "msg"],
-        toggle=Config.TOGGLE_ON_OFF['handle_whisper'],
-        role=[Config.ADMIN_ROLE]
+        toggle=config.TOGGLE_ON_OFF['handle_whisper'],
+        role=[config.ADMIN_ROLE]
     )
     async def handle_whisper(client, txt_channel, author, msg, message) \
             -> "Whisper a player in game":
@@ -307,8 +307,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["notice"],
-        toggle=Config.TOGGLE_ON_OFF['handle_notice'],
-        role=[Config.ADMIN_ROLE]
+        toggle=config.TOGGLE_ON_OFF['handle_notice'],
+        role=[config.ADMIN_ROLE]
     )
     async def handle_notice(client, txt_channel, author, msg, message) \
             -> "Send a message to all players":
@@ -328,8 +328,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["unban", "pardon"],
-        toggle=Config.TOGGLE_ON_OFF['handle_unban'],
-        role=[Config.ADMIN_ROLE]
+        toggle=config.TOGGLE_ON_OFF['handle_unban'],
+        role=[config.ADMIN_ROLE]
     )
     async def handle_unban(client, txt_channel, author, msg, message) \
             -> "Unbans a player":
@@ -345,8 +345,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["setgmlevel", "makegm"],
-        toggle=Config.TOGGLE_ON_OFF['handle_setgmlevel'],
-        role=[Config.ADMIN_ROLE]
+        toggle=config.TOGGLE_ON_OFF['handle_setgmlevel'],
+        role=[config.ADMIN_ROLE]
     )
     async def handle_setgmlevel(client, txt_channel, author, msg, message) \
             -> "Makes a player a gm":
@@ -369,8 +369,8 @@ class Command:
     @staticmethod
     @command(
         cmd=["givevp", "addvp"],
-        toggle=Config.TOGGLE_ON_OFF['handle_give_vp'],
-        role=[Config.ADMIN_ROLE]
+        toggle=config.TOGGLE_ON_OFF['handle_give_vp'],
+        role=[config.ADMIN_ROLE]
     )
     async def handle_give_vp(client, txt_channel, author, msg, message) \
             -> "Gives a player votepoints":

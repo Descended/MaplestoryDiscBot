@@ -22,7 +22,7 @@ endlocal
 :virtual
 echo "You have selected A: Virtual Python Environment"
 call venv\scripts\activate.bat
-venv\scripts\python src/Main.py
+venv\scripts\python src/main.py
 :: echo "The bot crashed, restarting bot.."
 :: goto virtual
 EXIT /B 0
@@ -30,7 +30,7 @@ EXIT /B 0
 :: function to run from global environment
 :global
 echo "You have selected B: Global Python Environment"
-python src/Main.py
+python src/main.py
 :: echo "The bot crashed, restarting bot.."
 :: goto global
 EXIT /B 0

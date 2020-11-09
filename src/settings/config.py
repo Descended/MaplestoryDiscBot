@@ -21,13 +21,13 @@ EMBED_COLOR = 0x03fcc6  # Colour of bot message (no need to touch)
 ICON_URL = "https://cdn.discordapp.com/icons/722153430457647104/ad8368ee9d687dc73aaa8f47ce0c0026.png?size=128"  # Display icon
 
 # Connection Settings
-# For use in DatabaseHandler.py:
+# For use in database_handler.py:
 DATABASE_HOST = "localhost"  # REQUIRED; DB Host (no need to touch if bot and DB are hosted on the same machine)
 DATABASE_NAME = "heavenms"  # REQUIRED; DB connection/schema name
 DATABASE_USER = "root"  # REQUIRED; DB connection username
 DATABASE_PASS = ""  # REQUIRED; DB connection password
 
-# For use in ApiHandler.py:
+# For use in api_handler.py:
 API_KEY = "PUTAPIKEYHERE"  # REQUIRED; proprietary API key for web-requests
 API_HOST = "http://localhost:8080/"  # REQUIRED; server location (no need to touch if bot and server are hosted on the same machine)
 OFFLINE_MESSAGE = "The server is currently offline"  # Error message (no need to touch)
@@ -105,3 +105,7 @@ DISABLED_TEXT = "This command has been disabled"
 
 # Text in help command
 BOT_VER = "v0.4.0 Alpha"
+
+# Logger Constants
+LOG_FORMAT = "%(asctime)s — %(name)s — %(levelname)s — %(message)s"
+LOG_FILE = "DiscordBotOperations.log"

@@ -3,8 +3,8 @@
 import logging
 import sys
 from logging.handlers import TimedRotatingFileHandler
-from src.settings import Config
-FORMATTER = logging.Formatter(Config.LOG_FORMAT)
+from src.settings import config
+FORMATTER = logging.Formatter(config.LOG_FORMAT)
 
 
 def get_console_handler():
@@ -14,7 +14,7 @@ def get_console_handler():
 
 
 def get_file_handler():
-	file_handler = TimedRotatingFileHandler(Config.LOG_FILE, when='midnight')
+	file_handler = TimedRotatingFileHandler(config.LOG_FILE, when='midnight')
 	file_handler.setFormatter(FORMATTER)
 	return file_handler
 

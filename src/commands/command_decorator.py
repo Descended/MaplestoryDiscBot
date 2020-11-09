@@ -1,7 +1,7 @@
 # Python Decorator
 import time
 from functools import wraps
-from src.settings import Config
+from src.settings import config
 
 
 # Credits to Asura, for this beautiful decorator
@@ -26,13 +26,13 @@ def command(**kwargs):
                 if "cmd" in key:
                     # Sanity check - for single String command name (never used, as far as I can tell)
                     if isinstance(value, str):
-                        c = "{}{}".format(Config.PREFIX, value)
+                        c = "{}{}".format(config.PREFIX, value)
                         if not msg.startswith(c):
                             return
                     elif isinstance(value, list):
                         right_cmd = False
                         for cmd in value:
-                            c = "{}{}".format(Config.PREFIX, cmd)
+                            c = "{}{}".format(config.PREFIX, cmd)
                             if msg.startswith(c):
                                 right_cmd = True
                                 break
@@ -44,7 +44,7 @@ def command(**kwargs):
                     # Sanity check - make sure it's of Boolean type
                     if isinstance(value, bool):
                         if not value:  # if toggle status is false
-                            await txt_channel.send(Config.DISABLED_TEXT)  # send out error message, and don't carry out
+                            await txt_channel.send(config.DISABLED_TEXT)  # send out error message, and don't carry out
                             return
 
                 # Role checks
