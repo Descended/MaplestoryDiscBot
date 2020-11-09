@@ -55,9 +55,11 @@ class Command:
             help_txt = annotations['return']
             cmd_txt = "/".join(decorators['cmd']) if isinstance(decorators['cmd'], list) else decorators['cmd']
             reply += "{} - {}\n".format(cmd_txt, help_txt)
-
-        reply += f"Bot Version: {Config.BOT_VER}\n"
-        await txt_channel.send(reply)
+        e = discord.Embed(title="Commands List", description="List of available commands", colour=Config.EMBED_COLOR)
+        e.add_field(name="Commands", value=reply, inline=True)
+        e.set_thumbnail(url=Config.THUMBNAIL_URL)
+        e.set_footer(text=f"Bot Version: {Config.BOT_VER}\n", icon_url=Config.ICON_URL)
+        await txt_channel.send(embed=e)
         return True
 
     @staticmethod
