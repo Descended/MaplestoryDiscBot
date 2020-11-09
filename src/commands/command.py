@@ -7,9 +7,8 @@ from src.database_handler import DatabaseHandler
 from src.commands.command_decorator import command
 from src.settings import config
 import src.generic_logger as logger
-from src.main import spirit_logger as main_logger
 
-spirit_logger = logger.get_logger("main.command")  # Start logging commands
+spirit_logger = logger.get_logger("command")  # Start logging commands
 
 
 # General and Admin commands
@@ -439,11 +438,12 @@ class Command:
     async def handle_logger_on(client, txt_channel, author, msg, message) \
             -> "Turns the advanced logger on":
         try:
-            main_logger.addHandler(logger.get_console_handler())
-            main_logger.addHandler(logger.get_file_handler())
-            main_logger.propagate = True
-            main_logger.info("Logger turned on!")
+            spirit_logger.addHandler(logger.get_console_handler())
+            spirit_logger.addHandler(logger.get_file_handler())
+            spirit_logger.propagate = True
+            spirit_logger.info("Logger turned on!")
             config.LOG_FLAG = True
+            txt_channel.send("Advanced logger will now START verbose logging!")
             return True
         except Exception as e:
             print(f"Error occurred whilst trying to turn logger on: \n{e}")
@@ -458,11 +458,12 @@ class Command:
     async def handle_logger_off(client, txt_channel, author, msg, message) \
             -> "Turns the advanced logger off":
         try:
-            main_logger.info("Turning logger off!")
-            main_logger.removeHandler(logger.get_console_handler())
-            main_logger.removeHandler(logger.get_file_handler())
-            main_logger.propagate = False
+            spirit_logger.info("Turning logger off!")
+            spirit_logger.removeHandler(logger.get_console_handler())
+            spirit_logger.removeHandler(logger.get_file_handler())
+            spirit_logger.propagate = False
             config.LOG_FLAG = False
+            txt_channel.send("Advanced logger will now STOP verbose logging!")
             return True
         except Exception as e:
             print(f"Error occurred whilst trying to turn logger off: \n{e}")

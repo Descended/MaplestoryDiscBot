@@ -4,7 +4,7 @@ from functools import wraps
 from src.settings import config
 import src.generic_logger as logger
 
-spirit_logger = logger.get_logger("main.decorator")
+spirit_logger = logger.get_logger("command.decorator")
 
 
 # Credits to Asura, for this beautiful decorator

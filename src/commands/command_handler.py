@@ -6,7 +6,7 @@ from src.commands.command import Command
 from src.settings import config
 import src.generic_logger as logger
 
-spirit_logger = logger.get_logger("main.cmdhandler")
+spirit_logger = logger.get_logger("command.cmdhandler")
 
 
 class CommandHandler:

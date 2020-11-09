@@ -3,7 +3,7 @@ import json
 from src.settings import config
 import src.generic_logger as logger
 
-spirit_logger = logger.get_logger("main.utils")
+spirit_logger = logger.get_logger("command.utils")
 
 
 class Utils:
