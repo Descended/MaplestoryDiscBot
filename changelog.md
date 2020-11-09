@@ -114,6 +114,9 @@
 [Add logger module](https://github.com/Descended/MaplestoryDiscBot/commit/ae97ace055c57c90c45e8b20e219b2e5a9e8dc55)  
 [Refactor (rename) modules to follow Google conventions](https://github.com/Descended/MaplestoryDiscBot/commit/159b4483748f65b49479e0b918e592a2198cfa4c)  
 [Add support for advanced logging (enabled via command)](https://github.com/Descended/MaplestoryDiscBot/commit/53c740d328fd57481322ca3e01928592ab64d8d2)  
+[https://github.com/Descended/MaplestoryDiscBot/commit/aa6b907eb2b0b81473c0d8d4be1618472dc8f59f](https://github.com/Descended/MaplestoryDiscBot/commit/aa6b907eb2b0b81473c0d8d4be1618472dc8f59f)  
   - Added advanced logging capabilities (off by default)
   - Added logging commands for admin: `!startlog` & `!stoplog`
   - Rename module names to snake case (per Google's conventions and PEP)
+  - Fix circular dependency that resulted from adding advanced logger
+  - Fix typo and wrong inclusions in the requirements.txt file
