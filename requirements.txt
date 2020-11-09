@@ -1,0 +1,19 @@
+aiohttp==3.6.2
+async-timeout==3.0.1
+attrs==20.2.0
+certifi==2020.6.20
+chardet==3.0.4
+discord==1.0.1
+discord.py==1.5.0
+idna==2.10
+idna-ssl==1.1.0
+multidict==4.7.6
+mysql==0.0.2
+mysql-connector==2.2.9
+mysqlclient==2.0.1
+pip==20.2.3
+requests==2.24.0
+setuptools	50.3.0==50.3.2
+typing-extensions==3.7.4.3
+urllib3==1.25.10
+yarl==1.6.0
