@@ -22,6 +22,7 @@ class CommandHandler:
         if not can_use:
             return
 
+        # Get the list of Command methods in the Command module
         cmds = [func for func in dir(Command) if callable(getattr(Command, func)) and not func.startswith("__")]
 
         if Config.LOG_COMMANDS and Utils.is_command(msg.split(" ")[0]):
@@ -30,6 +31,9 @@ class CommandHandler:
 
         for cmd in cmds:
             await getattr(Command, cmd)(client, txt_channel, author, msg, message)
+            # Attempt to pass in:
+            # client, txt_channel, author, msg, message
+            # for every method in the Command module
 
 
     @staticmethod

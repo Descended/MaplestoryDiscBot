@@ -17,7 +17,13 @@ class Command:
         Structure/Format:
 
         @staticmethod
-        @command(cmd=["anycommandnamehere"], toggle=Config.TOGGLE_ON_OFF['handle_foo'], role = ["anyrole"])
+        @command(
+            cmd=["anycommandnamehere"],  # required; list of command aliases - single String allowed: cmd="my_command"
+            toggle=Config.TOGGLE_ON_OFF['handle_foo'],  # optional; enable toggle on/off in config - MUST BE BOOL
+            role = ["anyrole"]  # optional; restrict usage to this list of roles - single String allowed
+            excl_channel = ["anychanel"]  # optional; ban the use of this command in these channels - single String allowed
+            channel = ["anychanel"]  # optional; restrict usage to certain channels - single String allowed
+        )
         async def handle_foo(client, txt_channel, author, msg, message) \
             -> "Description of commands go here":
             # CODE GOES HERE

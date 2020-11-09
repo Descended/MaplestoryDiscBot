@@ -21,7 +21,10 @@ def command(**kwargs):
             for key, value in kwargs.items():
 
                 # Command name check
+                # Check if the start of the message matches the command aliases defined in the decorator
+                # If not, don't carry out (i.e. empty return)
                 if "cmd" in key:
+                    # Sanity check - for single String command name (never used, as far as I can tell)
                     if isinstance(value, str):
                         c = "{}{}".format(Config.PREFIX, value)
                         if not msg.startswith(c):
@@ -38,9 +41,10 @@ def command(**kwargs):
 
                 # Toggle status check - KOOKIIE
                 if "toggle" in key:
+                    # Sanity check - make sure it's of Boolean type
                     if isinstance(value, bool):
                         if not value:  # if toggle status is false
-                            await txt_channel.send(Config.DISABLED_TEXT)
+                            await txt_channel.send(Config.DISABLED_TEXT)  # send out error message, and don't carry out
                             return
 
                 # Role checks
@@ -58,7 +62,6 @@ def command(**kwargs):
                         if not has_role:
                             return
 
-
                 # Excluding Channel checks
                 elif "excl_channel" in key:  # Channel(s) command is not allowed in.
                     if isinstance(value, str):
@@ -72,7 +75,6 @@ def command(**kwargs):
                                 break
                         if excluded_channel:
                             return
-
 
                 # Channel checks
                 elif "channel" in key:  # Channel(s) command must be in.
