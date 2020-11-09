@@ -123,4 +123,5 @@
 ## v0.4.2 Alpha
   - Slight reduction in advanced logger verbosity
   - Added utility function: ASCII checker
-  - Added ASCII checks for non-admin commands  
+  - Added ASCII checks for non-admin commands
+  - Added primitive Discord emoji check for non-admin commands  
