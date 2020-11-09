@@ -26,8 +26,8 @@ DATABASE_PASS = ""  # REQUIRED; DB connection password
 # For use in ApiHandler.py:
 API_KEY = "PUTAPIKEYHERE"  # REQUIRED; proprietary API key for web-requests
 API_HOST = "http://localhost:8080/"  # REQUIRED; server location (no need to touch if bot and server are hosted on the same machine)
-OFFLINE_MESSAGE = "Server is currently offline"  # Error message (no need to touch)
-DATABASE_OFFLINE_MESSAGE = "The database is offline"  # Error message (no need to touch)
+OFFLINE_MESSAGE = "The server is currently offline"  # Error message (no need to touch)
+DATABASE_OFFLINE_MESSAGE = "The database is currently offline"  # Error message (no need to touch)
 
 # For use with MapleStory.io API:
 # Used for loading the graphical assets - no need to touch unless you're using a newer version
@@ -41,7 +41,7 @@ INFO_EXP = "6x"  # Displays Exp Rate of Server
 INFO_DROP = "2x"  # Displays Drop Rate of Server
 INFO_MESO = "1x"  # Displays Meso Rate of Server
 INFO_LOCATION = "Insert Server Location Here"  # Location of the physical server
-INFO_STATE = "Alpha-Open Testing"  # Add what the current state of the server is here
+INFO_STATE = "Open-Alpha Testing"  # Add what the current state of the server is here
 
 # Other Constants
 # Warning: Do NOT remove original credits! You are legally required to keep them!
@@ -51,7 +51,7 @@ CREDITS = {
     # "DiscordUser": "for <reason>"
     '@Desc#0416': ' - Author',
     '@Not Brandon#4444': ' - Contributor',
-    'KOOKIIE#9770': ' - Contributor'
+    '@KOOKIIE#9770': ' - Contributor'
 }
 
 # List of commands tracked by the logger:
