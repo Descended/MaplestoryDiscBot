@@ -110,18 +110,28 @@
   - Added missing exception handling for DB handler methods
   - Expanded exception handling for API handler methods
   - Dealt with some weak warnings (e.g. variable name shadowing inbuilt functions)
+  - Documentation updates
 ## v0.4.1 Alpha
 [Add logger module](https://github.com/Descended/MaplestoryDiscBot/commit/ae97ace055c57c90c45e8b20e219b2e5a9e8dc55)  
 [Refactor (rename) modules to follow Google conventions](https://github.com/Descended/MaplestoryDiscBot/commit/159b4483748f65b49479e0b918e592a2198cfa4c)  
 [Add support for advanced logging (enabled via command)](https://github.com/Descended/MaplestoryDiscBot/commit/53c740d328fd57481322ca3e01928592ab64d8d2)  
-[https://github.com/Descended/MaplestoryDiscBot/commit/aa6b907eb2b0b81473c0d8d4be1618472dc8f59f](https://github.com/Descended/MaplestoryDiscBot/commit/aa6b907eb2b0b81473c0d8d4be1618472dc8f59f)  
+[Fix circular dependency](https://github.com/Descended/MaplestoryDiscBot/commit/aa6b907eb2b0b81473c0d8d4be1618472dc8f59f)  
   - Added advanced logging capabilities (off by default)
   - Added logging commands for admin: `!startlog` & `!stoplog`
   - Rename module names to snake case (per Google's conventions and PEP)
   - Fix circular dependency that resulted from adding advanced logger
   - Fix typo and wrong inclusions in the requirements.txt file
+  - Documentation updates
 ## v0.4.2 Alpha
+[Add ASCII checker in utils](https://github.com/Descended/MaplestoryDiscBot/commit/886b22630285017f3f9389151e7313f06b6d046f)  
+[Reduce verbosity of advance logger](https://github.com/Descended/MaplestoryDiscBot/commit/b3b1bd7185ffdfb98e25e46285b72dbc744d30f0)  
+[Add ASCII check for non-admin commands](https://github.com/Descended/MaplestoryDiscBot/commit/32a3df5c125a62885d2001cce9eb43cdf8c7f553)  
+[Add log points for non-ASCII input](https://github.com/Descended/MaplestoryDiscBot/commit/5dafc7a2dedcc7987fa4056f9cf9529ca98ddb55)  
+[Minor logging-related fixes](https://github.com/Descended/MaplestoryDiscBot/commit/cd20b44d772c323b05e50e823d5f1044e685fe78)  
+[Add support for Discord emoji at the start of the message](https://github.com/Descended/MaplestoryDiscBot/commit/756a8052d2ac26726d125bc93560524200375340)  
+[Improve Discord emoji identification algorithm](https://github.com/Descended/MaplestoryDiscBot/commit/6b4afdfbadb3d188a8271bcb14a380922dcf3e08)  
   - Slight reduction in advanced logger verbosity
   - Added utility function: ASCII checker
   - Added ASCII checks for non-admin commands
   - Added primitive Discord emoji check for non-admin commands  
+  - Documentation updates
