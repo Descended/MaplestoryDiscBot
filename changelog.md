@@ -95,3 +95,8 @@
   - Added prototype code to toggle commands on/off
   - Added requirements file for pip
   - Documentation updates
+## v0.3.1 Alpha
+[Factor toggle logic to CommandDecorator](https://github.com/Descended/MaplestoryDiscBot/commit/1d3f448609e0d28912cb1e1a68e6508776d91cdf)  
+[Add comments](https://github.com/Descended/MaplestoryDiscBot/commit/e169115e6fbc80233ea617fe9bffa444d5b23999)  
+  - Make toggle on/off more DRY by factoring into decorator
+  - Documentation updates

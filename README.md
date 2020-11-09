@@ -6,7 +6,7 @@
   
   This bot allows direct access to and/or manipulation of data via the database, as well as through web-requests (proprietary API).
   
-  #### Current Version: v0.3.0 Alpha [(Change Log)](changelog.md)  
+  #### Current Version: v0.3.1 Alpha [(Change Log)](changelog.md)  
 
 ## SETUP
 For the set-up guide refer to the project [wiki](https://github.com/Descended/MaplestoryDiscBot/wiki/Setup)
