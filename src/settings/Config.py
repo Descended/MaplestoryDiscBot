@@ -104,4 +104,4 @@ TOGGLE_ON_OFF = {
 DISABLED_TEXT = "This command has been disabled"
 
 # Text in help command
-BOT_VER = "v0.3.1 Alpha"
+BOT_VER = "v0.4.0 Alpha"

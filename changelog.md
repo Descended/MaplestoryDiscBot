@@ -90,7 +90,7 @@
 [Fix literals](https://github.com/Descended/MaplestoryDiscBot/commit/5432869df7191e676d1bdf62147e5757ff418507)  
 [Change var name 'type' as it shadows in-built](https://github.com/Descended/MaplestoryDiscBot/commit/5e61f803b26d702d8e51b32d535327c33c26b800)  
   - Cosmetic changes
-  - Dealt with some weak warnings
+  - Dealt with some weak warnings (e.g. variable name shadowing inbuilt functions)
   - Removed VENV from repository
   - Added prototype code to toggle commands on/off
   - Added requirements file for pip
@@ -100,3 +100,13 @@
 [Add comments](https://github.com/Descended/MaplestoryDiscBot/commit/e169115e6fbc80233ea617fe9bffa444d5b23999)  
   - Make toggle on/off more DRY by factoring into decorator
   - Documentation updates
+## v0.4.0 Alpha
+[beautified help command](https://github.com/Descended/MaplestoryDiscBot/commit/54270bda8871b359dba2eeb7b209c22cbd01615b)  
+[Added a new bot feature](https://github.com/Descended/MaplestoryDiscBot/commit/e7286f26a19ba62116089b2f755a461e34a1516f)  
+[Exception message, and var name shadowing clean-up](https://github.com/Descended/MaplestoryDiscBot/commit/efcbf3324f99f930cd47805222c27491ba014a4f)  
+[Expand exception catches](https://github.com/Descended/MaplestoryDiscBot/commit/04e4569b917f00b174faa4d910d3c937d77f5682)  
+  - Cosmetic changes
+  - Added functionality: periodically fetch the number of players online
+  - Added missing exception handling for DB handler methods
+  - Expanded exception handling for API handler methods
+  - Dealt with some weak warnings (e.g. variable name shadowing inbuilt functions)
