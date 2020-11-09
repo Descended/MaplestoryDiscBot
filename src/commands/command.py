@@ -96,6 +96,7 @@ class Command:
         # Since GMS should only have ASCII names
         if not Utils.is_ascii(character_name):
             txt_channel.send("Invalid characters detected in character name!")
+            spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
 
         rows, result = DatabaseHandler.get_character_stats(character_name)
         # A tuple is returned, result being false means the database is off and vice versa
@@ -162,6 +163,7 @@ class Command:
         # Since GMS should only have ASCII names
         if not Utils.is_ascii(guild_name):
             txt_channel.send("Invalid characters detected in guild name!")
+            spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
 
         rows, result = DatabaseHandler.get_guild_info(guild_name)
         if not result:  # If the result is false the database is offline
@@ -214,6 +216,7 @@ class Command:
         # Optional ASCII-check for rank type (comment out if undesired)
         if not Utils.is_ascii(category):
             txt_channel.send("Invalid characters detected in rank category!")
+            spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
 
         table, result = DatabaseHandler.get_rankings(category)
         if "column" in str(table):  # checks if the word "column" is in the table this means the column was not found
