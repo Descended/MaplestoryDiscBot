@@ -79,3 +79,19 @@
   - Added logic for auto-restart (turned off by default)
   - Added logic for role-assignment (gateway intents MUST be enabled as of discord.py v1.5 and later)
   - Documentation updates
+## v0.3.0 Alpha
+[Change double to single quote in dict](https://github.com/Descended/MaplestoryDiscBot/commit/4316823eec6f987a9fd580ce301d6e1486ae8fc6)  
+[fixed typo in ApiHandler](https://github.com/Descended/MaplestoryDiscBot/commit/a5fad2854c6171f44f827e1482da930a7a1737f9)  
+[Add toggle on/off](https://github.com/Descended/MaplestoryDiscBot/commit/9077bf61fdae8eff6c580733fb3e7765651b2a88)  
+[Fixed an error in the !setgmlevel command](https://github.com/Descended/MaplestoryDiscBot/commit/624e343390babc26a5636ce7ead3b42075a80c17)  
+[Ignore venv in repo](https://github.com/Descended/MaplestoryDiscBot/commit/649322625557b9935b1682b40871c179d197cb0c)  
+[Stop tracking venv](https://github.com/Descended/MaplestoryDiscBot/commit/99c0b32425dc5839d147aaef750b4ae0f7a2b0b5)  
+[Add requirements file](https://github.com/Descended/MaplestoryDiscBot/commit/879552c6a7dd043697f48830228dbe875a6004eb)  
+[Fix literals](https://github.com/Descended/MaplestoryDiscBot/commit/5432869df7191e676d1bdf62147e5757ff418507)  
+[Change var name 'type' as it shadows in-built](https://github.com/Descended/MaplestoryDiscBot/commit/5e61f803b26d702d8e51b32d535327c33c26b800)  
+  - Cosmetic changes
+  - Dealt with some weak warnings
+  - Removed VENV from repository
+  - Added prototype code to toggle commands on/off
+  - Added requirements file for pip
+  - Documentation updates
