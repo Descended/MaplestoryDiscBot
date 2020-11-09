@@ -91,6 +91,12 @@ class Command:
             await txt_channel.send("Usage: !character <name>")
             return False
         character_name = args[1]
+
+        # Optional ASCII-check for char name (comment out if undesired)
+        # Since GMS should only have ASCII names
+        if not Utils.is_ascii(character_name):
+            txt_channel.send("Invalid characters detected in character name!")
+
         rows, result = DatabaseHandler.get_character_stats(character_name)
         # A tuple is returned, result being false means the database is off and vice versa
 
@@ -151,6 +157,12 @@ class Command:
             await txt_channel.send("Usage: !guild <name>")
             return False
         guild_name = args[1]
+
+        # Optional ASCII-check for guild name (comment out if undesired)
+        # Since GMS should only have ASCII names
+        if not Utils.is_ascii(guild_name):
+            txt_channel.send("Invalid characters detected in guild name!")
+
         rows, result = DatabaseHandler.get_guild_info(guild_name)
         if not result:  # If the result is false the database is offline
             await txt_channel.send(config.DATABASE_OFFLINE_MESSAGE)
@@ -198,6 +210,11 @@ class Command:
             # TODO: Add category list
             return False
         category = args[1]
+
+        # Optional ASCII-check for rank type (comment out if undesired)
+        if not Utils.is_ascii(category):
+            txt_channel.send("Invalid characters detected in rank category!")
+
         table, result = DatabaseHandler.get_rankings(category)
         if "column" in str(table):  # checks if the word "column" is in the table this means the column was not found
             await txt_channel.send("Can't find the category")
