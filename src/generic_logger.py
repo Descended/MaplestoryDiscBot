@@ -1,5 +1,6 @@
 # Logger Module
 # Business logic obtained from https://www.toptal.com/python/in-depth-python-logging
+# This is a generic advanced logger to log the operations of the program, for debug purposes
 import logging
 import sys
 from logging.handlers import TimedRotatingFileHandler

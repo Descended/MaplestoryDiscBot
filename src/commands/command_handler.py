@@ -4,6 +4,9 @@ from src.command_logger import Logger
 from src.utils import Utils
 from src.commands.command import Command
 from src.settings import config
+import src.generic_logger as logger
+
+spirit_logger = logger.get_logger("main.cmdhandler")
 
 
 class CommandHandler:
@@ -42,4 +45,5 @@ class CommandHandler:
         msg = message.content
         guild = Guild(message.guild)
         txt_channel = TextChannel(message.channel)
+        spirit_logger.debug(str(stacktrace))
         await txt_channel.send(str(stacktrace))

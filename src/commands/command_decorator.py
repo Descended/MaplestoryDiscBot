@@ -2,6 +2,9 @@
 import time
 from functools import wraps
 from src.settings import config
+import src.generic_logger as logger
+
+spirit_logger = logger.get_logger("main.decorator")
 
 
 # Credits to Asura, for this beautiful decorator
@@ -18,13 +21,16 @@ def command(**kwargs):
             author = args[2]
             msg = args[3]
 
+            spirit_logger.debug(f"author: {author}; msg: {msg}")
             for key, value in kwargs.items():
 
+                spirit_logger.debug(f"Key: {key}; Value: {value}")
                 # Command name check
                 # Check if the start of the message matches the command aliases defined in the decorator
                 # If not, don't carry out (i.e. empty return)
                 if "cmd" in key:
                     # Sanity check - for single String command name (never used, as far as I can tell)
+                    spirit_logger.debug("Performing command name check")
                     if isinstance(value, str):
                         c = "{}{}".format(config.PREFIX, value)
                         if not msg.startswith(c):
@@ -42,6 +48,7 @@ def command(**kwargs):
                 # Toggle status check - KOOKIIE
                 if "toggle" in key:
                     # Sanity check - make sure it's of Boolean type
+                    spirit_logger.debug("Performing toggle status check")
                     if isinstance(value, bool):
                         if not value:  # if toggle status is false
                             await txt_channel.send(config.DISABLED_TEXT)  # send out error message, and don't carry out
@@ -49,6 +56,7 @@ def command(**kwargs):
 
                 # Role checks
                 if "role" in key:  # Role the author must have for the command to be executed
+                    spirit_logger.debug("Performing role check")
                     if isinstance(value, str):
                         if not author.roles == value:
                             return
@@ -64,6 +72,7 @@ def command(**kwargs):
 
                 # Excluding Channel checks
                 elif "excl_channel" in key:  # Channel(s) command is not allowed in.
+                    spirit_logger.debug("Performing channel exclusion check")
                     if isinstance(value, str):
                         if txt_channel.get_channel_name() == value:
                             return
@@ -78,6 +87,7 @@ def command(**kwargs):
 
                 # Channel checks
                 elif "channel" in key:  # Channel(s) command must be in.
+                    spirit_logger.debug("Performing channel inclusion check")
                     if isinstance(value, str):
                         if not txt_channel.get_channel_name() == value:
                             return

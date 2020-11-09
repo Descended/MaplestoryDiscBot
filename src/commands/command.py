@@ -6,6 +6,10 @@ from src.database_handler import DatabaseHandler
 
 from src.commands.command_decorator import command
 from src.settings import config
+import src.generic_logger as logger
+from src.main import spirit_logger as main_logger
+
+spirit_logger = logger.get_logger("main.command")  # Start logging commands
 
 
 # General and Admin commands
@@ -426,3 +430,40 @@ class Command:
     #   g = discord.Embed(title=f"{winner} won the giveaway for", description=details, color=Config.EMBED_COLOR)
     #   await txt_channel.send(embed=g)
 
+    @staticmethod
+    @command(
+        cmd=["startlogging", "startlog", "onlogger"],
+        toggle=True,  # Logger access should always be on for staff
+        role=[config.ADMIN_ROLE]
+    )
+    async def handle_logger_on(client, txt_channel, author, msg, message) \
+            -> "Turns the advanced logger on":
+        try:
+            main_logger.addHandler(logger.get_console_handler())
+            main_logger.addHandler(logger.get_file_handler())
+            main_logger.propagate = True
+            main_logger.info("Logger turned on!")
+            config.LOG_FLAG = True
+            return True
+        except Exception as e:
+            print(f"Error occurred whilst trying to turn logger on: \n{e}")
+            return False
+
+    @staticmethod
+    @command(
+        cmd=["stoplogging", "stoplog", "offlogger"],
+        toggle=True,  # Logger access should always be on for staff
+        role=[config.ADMIN_ROLE]
+    )
+    async def handle_logger_off(client, txt_channel, author, msg, message) \
+            -> "Turns the advanced logger off":
+        try:
+            main_logger.info("Turning logger off!")
+            main_logger.removeHandler(logger.get_console_handler())
+            main_logger.removeHandler(logger.get_file_handler())
+            main_logger.propagate = False
+            config.LOG_FLAG = False
+            return True
+        except Exception as e:
+            print(f"Error occurred whilst trying to turn logger off: \n{e}")
+            return False

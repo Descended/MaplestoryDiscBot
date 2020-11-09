@@ -1,6 +1,9 @@
 import mysql.connector
 
 from src.settings import config
+import src.generic_logger as logger
+
+spirit_logger = logger.get_logger("main.db")
 
 
 class DatabaseHandler:
@@ -11,20 +14,24 @@ class DatabaseHandler:
     @staticmethod
     def get_character_stats(character_name):
         try:
+            spirit_logger.debug(f"Attempting to get char stats from name via DB: {character_name}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
             cursor.execute(f"SELECT * FROM characters WHERE name = '{character_name}'")
             rows = cursor.fetchall()
             con.disconnect()
+            spirit_logger.debug(f"{character_name}'s stats: {rows}")
             return rows, True
         except Exception as e:
             print(f"Error encountered whilst fetching character stats via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst fetching character stats via SQL: \n{e}")
             return e, False
 
     @staticmethod
     def get_character_look(character_id, hair, face, skin):
         try:
+            spirit_logger.debug(f"Attempting to get char look via DB. ID: {character_id}; Hair: {hair}; Face: {face}; Skin: {skin}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -38,9 +45,11 @@ class DatabaseHandler:
             con.disconnect()
             url = f"https://maplestory.io/api/{config.REGION}/{config.VERSION}/Character/200{skin}/{str(itemId)[1:-1]}/stand1/1".replace(
                 " ", "")  # gets the character img, and strip out whitespaces
+            spirit_logger.debug(f"Character {character_id} look: {url}")
             return url
         except Exception as e:
             print(f"Error encountered whilst fetching character look via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst fetching character look via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -48,6 +57,7 @@ class DatabaseHandler:
         if guild_id == 0:  # Guildless
             return "None"
         try:
+            spirit_logger.debug(f"Attempting to get guild name from id: {guild_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -56,28 +66,35 @@ class DatabaseHandler:
             rows = cursor.fetchall()
             guild_name = rows[0]["name"]
             con.disconnect()
+            spirit_logger.debug(f"Guild name: {guild_name}")
             return guild_name
         except Exception as e:
             print(f"Error encountered whilst fetching guild name via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst fetching guild name via SQL: \n{e}")
             return e, False
 
     @staticmethod
     def get_guild_info(name):
         try:
+            spirit_logger.debug(f"Attempting to get guild info from id: {guild_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
             cursor.execute(f"SELECT * FROM guilds WHERE name = '{name}'")
             rows = cursor.fetchall()
             con.disconnect()
+            spirit_logger.debug(f"Guild info: {rows}")
             return rows, True
         except Exception as e:
             print(f"Error encountered whilst fetching guild info via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst fetching guild info via SQL: \n{e}")
             return e, False
 
     @staticmethod
     def get_alliance_name(alliance_id):
+        spirit_logger.debug(f"Attempting to get alliance info from id: {alliance_id}")
         if alliance_id == 0:
+            spirit_logger.debug("Invalid ID")
             return "None"
         else:
             try:
@@ -88,29 +105,35 @@ class DatabaseHandler:
                 rows = cursor.fetchall()
                 alliance_name = rows[0]['name']
                 con.disconnect()
+                spirit_logger.debug(f"Alliance name: {alliance_name}")
                 return alliance_name
             except Exception as e:
                 print(f"Error encountered whilst fetching alliance name via SQL: \n{e}")
+                spirit_logger.error(f"Error encountered whilst fetching alliance name via SQL: \n{e}")
                 return e, False
 
     @staticmethod
-    def get_character_name(id):
+    def get_character_name(char_id):
         try:
+            spirit_logger.debug(f"Attempting to get character name from id: {char_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
-            cursor.execute(f"SELECT name FROM characters WHERE id = '{id}'")
+            cursor.execute(f"SELECT name FROM characters WHERE id = '{char_id}'")
             rows = cursor.fetchall()
             character_name = rows[0]['name']
             con.disconnect()
+            spirit_logger.debug(f"Character name: {character_name}")
             return character_name
         except Exception as e:
             print(f"Error encountered whilst fetching character name via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst fetching character name via SQL: \n{e}")
             return e, False
 
     @staticmethod
     def get_account_id(character_name):
         try:
+            spirit_logger.debug(f"Attempting to get account ID from character name: {character_name}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -120,14 +143,17 @@ class DatabaseHandler:
                 return False
             account_id = rows[0]['accountid']
             con.disconnect()
+            spirit_logger.debug(f"Account ID: {account_id}")
             return account_id
         except Exception as e:
             print(f"Error encountered whilst fetching account ID via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst fetching account ID via SQL: \n{e}")
             return e, False
 
     @staticmethod
     def unban_account(name):
         try:
+            spirit_logger.debug(f"Attempting to unban account by name: {name}")
             account_id = DatabaseHandler.get_account_id(name)  # Don't use "id" as it is reserved by Python
             if not account_id:  # checks if id is false which means the character was not found
                 return f"Couldn't find {name}"
@@ -139,9 +165,11 @@ class DatabaseHandler:
             cursor.execute(f"DELETE FROM ipbans WHERE aid = '{account_id}'")
             con.commit()
             con.disconnect()
+            spirit_logger.debug(f"Successfully unbanned {name}")
             return f"Successfully unbanned {name}"
         except Exception as e:
             print(f"Error encountered whilst attempting account unban via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst attempting account unban via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -152,20 +180,24 @@ class DatabaseHandler:
         Return: dict, boolean
         """
         try:
+            spirit_logger.debug(f"Attempting to get rankings by category: {category}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
             cursor.execute(f"SELECT name, {category}, job FROM characters WHERE gm <= 0 ORDER BY level DESC")
             rows = cursor.fetchall()
             con.disconnect()
+            spirit_logger.debug(f"{category} Rankings: {rows}")
             return rows, True
         except Exception as e:
             print(f"Error encountered whilst fetching rankings via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst fetching rankings via SQL: \n{e}")
             return e, False
 
     @staticmethod
     def get_vp(account_id):
         try:
+            spirit_logger.debug(f"Attempting to get vote points by id: {account_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -173,14 +205,17 @@ class DatabaseHandler:
             rows = cursor.fetchall()
             con.disconnect()
             vp = rows[0]["votepoints"]
+            spirit_logger.debug(f"{account_id} VP: {vp}")
             return vp
         except Exception as e:
             print(f"Error encountered whilst fetching vote points via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst fetching vote points via SQL: \n{e}")
             return e, False
 
     @staticmethod
     def give_vp(name, amount):
         try:
+            spirit_logger.debug(f"Attempting to allocate {amount} vote points by name: {name}")
             account_id = DatabaseHandler.get_account_id(name)
             if not account_id:
                 return f"Character {name} not found"
@@ -192,14 +227,17 @@ class DatabaseHandler:
             cursor.execute(f"UPDATE accounts SET votepoints = {total} where id = '{account_id}'")
             con.commit()
             con.disconnect()
-            return f"Successfully gave {amount} votepoints to {name}"
+            spirit_logger.debug(f"Successfully gave {amount} vote points to {name}")
+            return f"Successfully gave {amount} vote points to {name}"
         except Exception as e:
             print(f"Error encountered whilst allocating vote points via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst allocating vote points via SQL: \n{e}")
             return e, False
 
     @staticmethod
     def get_gm_level(name):
         try:
+            spirit_logger.debug(f"Attempting to get GM level by name: {name}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME)
             cursor = con.cursor(dictionary=True)
@@ -211,14 +249,17 @@ class DatabaseHandler:
                 return False
             level = rows[0]["gm"]  # like mentioned above change this if the name is different
             con.disconnect()
+            spirit_logger.debug(f"{name}'s GM level is: {level}")
             return level
         except Exception as e:
             print(f"Error encountered whilst fetching GM level via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst fetching GM level via SQL: \n{e}")
             return e, False
 
     @staticmethod
     def set_gm_level(name, level):
         try:
+            spirit_logger.debug(f"Attempting to set GM level to {level} by name: {name}")
             lvl = DatabaseHandler.get_gm_level(name)
             if lvl is False:
                 return f"Character {name} not found"
@@ -233,7 +274,9 @@ class DatabaseHandler:
             # Change this if ur source uses an account-wide gm system
             con.commit()  # commits all changes to the database
             con.disconnect()
+            spirit_logger.debug(f"Successfully set {name}'s GM level to {level}")
             return f"Successfully gave GM level {level} to: {name}"
         except Exception as e:
             print(f"Error encountered whilst setting GM level via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst setting GM level via SQL: \n{e}")
             return e, False

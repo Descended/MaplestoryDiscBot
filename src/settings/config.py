@@ -106,6 +106,7 @@ DISABLED_TEXT = "This command has been disabled"
 # Text in help command
 BOT_VER = "v0.4.0 Alpha"
 
-# Logger Constants
+# Advanced Logger Constants
 LOG_FORMAT = "%(asctime)s — %(name)s — %(levelname)s — %(message)s"
 LOG_FILE = "DiscordBotOperations.log"
+LOG_FLAG = False  # Advanced Logger State - turned off by default
