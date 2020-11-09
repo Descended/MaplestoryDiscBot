@@ -13,7 +13,7 @@ mysql-connector==2.2.9
 mysqlclient==2.0.1
 pip==20.2.3
 requests==2.24.0
-setuptools	50.3.0==50.3.2
+setuptools	==50.3.0
 typing-extensions==3.7.4.3
 urllib3==1.25.10
 yarl==1.6.0
