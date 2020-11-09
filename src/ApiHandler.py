@@ -17,6 +17,9 @@ class API:
             return r.text
         except EnvironmentError:
             return Config.OFFLINE_MESSAGE
+        except Exception as e:
+            print(f"Unknown error encountered whilst fetching server info via web API: \n{e}")
+            return e
 
     @staticmethod
     def dc_player(name):
@@ -29,6 +32,9 @@ class API:
             return r.text
         except EnvironmentError:
             return Config.OFFLINE_MESSAGE
+        except Exception as e:
+            print(f"Unknown error encountered whilst disconnecting player via web API: \n{e}")
+            return e
 
     @staticmethod
     def bot_check(name):
@@ -46,6 +52,9 @@ class API:
             return r.text
         except EnvironmentError:
             return Config.OFFLINE_MESSAGE
+        except Exception as e:
+            print(f"Unknown error encountered whilst attempting to whisper via web API: \n{e}")
+            return e
 
     @staticmethod
     def notice(message):
@@ -58,6 +67,9 @@ class API:
             return r.text
         except EnvironmentError:
             return Config.OFFLINE_MESSAGE
+        except Exception as e:
+            print(f"Unknown error encountered whilst attempting to send in-game notice via web API: \n{e}")
+            return e
 
     @staticmethod
     def duey(item, amount, name):
@@ -72,6 +84,9 @@ class API:
             return r.text
         except EnvironmentError:
             return Config.OFFLINE_MESSAGE
+        except Exception as e:
+            print(f"Unknown error encountered whilst attempting to send item(s) in-game via web API: \n{e}")
+            return e
 
     @staticmethod
     def set_gm_level(name, level):
@@ -85,6 +100,9 @@ class API:
             return r.text
         except EnvironmentError:
             return Config.OFFLINE_MESSAGE
+        except Exception as e:
+            print(f"Unknown error encountered whilst attempting to set GM level via web API: \n{e}")
+            return e
 
     @staticmethod
     def give_vp(name, amount):
@@ -98,4 +116,7 @@ class API:
             return r.text
         except EnvironmentError:
             return Config.OFFLINE_MESSAGE
+        except Exception as e:
+            print(f"Unknown error encountered whilst attempting to allocate vote points in-game via web API: \n{e}")
+            return e
 

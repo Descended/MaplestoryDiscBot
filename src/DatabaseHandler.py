@@ -19,7 +19,7 @@ class DatabaseHandler:
             con.disconnect()
             return rows, True
         except Exception as e:
-            print(f"Error encountered whilst fetching character stats: \n{e}")
+            print(f"Error encountered whilst fetching character stats via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -40,7 +40,7 @@ class DatabaseHandler:
                 " ", "")  # gets the character img, and strip out whitespaces
             return url
         except Exception as e:
-            print(f"Error encountered whilst fetching character look: \n{e}")
+            print(f"Error encountered whilst fetching character look via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -58,7 +58,7 @@ class DatabaseHandler:
             con.disconnect()
             return guild_name
         except Exception as e:
-            print(f"Error encountered whilst fetching guild name: \n{e}")
+            print(f"Error encountered whilst fetching guild name via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -72,7 +72,7 @@ class DatabaseHandler:
             con.disconnect()
             return rows, True
         except Exception as e:
-            print(f"Error encountered whilst fetching guild info: \n{e}")
+            print(f"Error encountered whilst fetching guild info via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -90,7 +90,7 @@ class DatabaseHandler:
                 con.disconnect()
                 return alliance_name
             except Exception as e:
-                print(f"Error encountered whilst fetching alliance name: \n{e}")
+                print(f"Error encountered whilst fetching alliance name via SQL: \n{e}")
                 return e, False
 
     @staticmethod
@@ -105,7 +105,7 @@ class DatabaseHandler:
             con.disconnect()
             return character_name
         except Exception as e:
-            print(f"Error encountered whilst fetching character name: \n{e}")
+            print(f"Error encountered whilst fetching character name via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -122,7 +122,7 @@ class DatabaseHandler:
             con.disconnect()
             return account_id
         except Exception as e:
-            print(f"Error encountered whilst fetching account ID: \n{e}")
+            print(f"Error encountered whilst fetching account ID via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -141,7 +141,7 @@ class DatabaseHandler:
             con.disconnect()
             return f"Successfully unbanned {name}"
         except Exception as e:
-            print(f"Error encountered whilst attempting account unban: \n{e}")
+            print(f"Error encountered whilst attempting account unban via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -160,7 +160,7 @@ class DatabaseHandler:
             con.disconnect()
             return rows, True
         except Exception as e:
-            print(f"Error encountered whilst fetching rankings: \n{e}")
+            print(f"Error encountered whilst fetching rankings via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -175,7 +175,7 @@ class DatabaseHandler:
             vp = rows[0]["votepoints"]
             return vp
         except Exception as e:
-            print(f"Error encountered whilst fetching vote points: \n{e}")
+            print(f"Error encountered whilst fetching vote points via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -194,7 +194,7 @@ class DatabaseHandler:
             con.disconnect()
             return f"Successfully gave {amount} votepoints to {name}"
         except Exception as e:
-            print(f"Error encountered whilst allocating vote points: \n{e}")
+            print(f"Error encountered whilst allocating vote points via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -213,7 +213,7 @@ class DatabaseHandler:
             con.disconnect()
             return level
         except Exception as e:
-            print(f"Error encountered whilst fetching GM level: \n{e}")
+            print(f"Error encountered whilst fetching GM level via SQL: \n{e}")
             return e, False
 
     @staticmethod
@@ -235,5 +235,5 @@ class DatabaseHandler:
             con.disconnect()
             return f"Successfully gave GM level {level} to: {name}"
         except Exception as e:
-            print(f"Error encountered whilst setting GM level: \n{e}")
+            print(f"Error encountered whilst setting GM level via SQL: \n{e}")
             return e, False
