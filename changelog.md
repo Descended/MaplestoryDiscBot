@@ -120,3 +120,7 @@
   - Rename module names to snake case (per Google's conventions and PEP)
   - Fix circular dependency that resulted from adding advanced logger
   - Fix typo and wrong inclusions in the requirements.txt file
+## v0.4.2 Alpha
+  - Slight reduction in advanced logger verbosity
+  - Added utility function: ASCII checker
+  - Added ASCII checks for non-admin commands  
