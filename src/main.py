@@ -13,6 +13,8 @@ from src.api_handler import API
 import src.generic_logger as logger
 
 spirit_logger = logger.get_logger("main")
+spirit_logger.addHandler(logger.get_console_handler())  # Main logger is always on!
+spirit_logger.addHandler(logger.get_file_handler())  # Main logger is always on!
 start_time = time.time()
 
 intents = discord.Intents.default()
@@ -25,23 +27,23 @@ client = commands.Bot(command_prefix=config.PREFIX, intents=intents)
 @tasks.loop(seconds=config.SEC_PER_UPDATE)
 async def track_online_players():
     try:
-        spirit_logger.debug("Attempting to update with number of players online")
+        # spirit_logger.debug("Attempting to update with number of players online")
         await client.change_presence(activity=discord.Game(name=API.get_server_info()))
     except Exception as e:
-        print(f"Error encountered whilst tracking online players: \n{e}")
+        # print(f"Error encountered whilst tracking online players: \n{e}")
         spirit_logger.error("Could not load online players!")
 
 
 @client.event
 async def on_ready():  # method that is called when bot is online
-    print("[DONE] Bot is now online.")
+    # print("[DONE] Bot is now online.")
     end_time = time.time()
-    print(f"[DONE] Successfully loaded bot in {end_time - start_time} seconds")
+    # print(f"[DONE] Successfully loaded bot in {end_time - start_time} seconds")
     spirit_logger.info(f"The bot has successfully loaded! Time taken: {end_time - start_time}s")
     await client.change_presence(activity=discord.Game(name=config.BOT_STATUS))
 
     if config.SHOW_ONLINE_PLAYERS:
-        print("Starting online players tracker...")
+        # print("Starting online players tracker...")
         track_online_players.start()  # Starting the looping tasks
 
 
@@ -69,7 +71,6 @@ def main():  # main function
 
 
 if __name__ == '__main__':
-    spirit_logger.info("Logger started up...")
     main()
     spirit_logger.info("Shutting down logger...")
     logger.shutdown_logger()
