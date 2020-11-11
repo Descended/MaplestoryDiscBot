@@ -23,6 +23,7 @@ ICON_URL = "https://cdn.discordapp.com/icons/722153430457647104/ad8368ee9d687dc7
 # Connection Settings
 # For use in database_handler.py:
 DATABASE_HOST = "localhost"  # REQUIRED; DB Host (no need to touch if bot and DB are hosted on the same machine)
+DATABASE_PORT = 3306  # Only change this if your Database is hosted on a Different port
 DATABASE_NAME = "heavenms"  # REQUIRED; DB connection/schema name
 DATABASE_USER = "root"  # REQUIRED; DB connection username
 DATABASE_PASS = ""  # REQUIRED; DB connection password
