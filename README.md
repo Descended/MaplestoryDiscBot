@@ -6,6 +6,7 @@
   
   This bot allows direct access to and/or manipulation of data via the database, as well as through web-requests (proprietary API).
   
+  This bot has only been tested on v83 HeavenMS but will work on other servers, but might require some changes.
   #### Current Version: v0.4.2 Alpha [(Change Log)](changelog.md)  
 
 ## SETUP
