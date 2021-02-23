@@ -120,16 +120,14 @@ class Command:
         name = char["name"]
         level = char["level"]
         job = char["job"]
-        str = char["str"]
-        dex = char["dex"]
-        luk = char["luk"]
-        int = char["int"]
         meso = char["meso"]
         rank = char["rank"]
         face = char["face"]
         hair = char["hair"]
         skin = char["skincolor"]  # Other Databases may have this column named "skin", rename accordingly
         guildid = char["guildid"]
+        fame = char["fame"]
+        # rebirths = char["reborns"]  # Other Databases may have this column named "rebirths", rename accordingly
 
         character_img = DatabaseHandler.get_character_look(id, hair, face, skin)  # sends the hair, face and skin id's
         # character_img is a link from maplestory.io API that lets us draw any character given the correct params
@@ -142,12 +140,12 @@ class Command:
         e.add_field(name="Name", value=name, inline=True)
         e.add_field(name="Level", value=level, inline=True)
         e.add_field(name="Job", value=Utils.get_job_by_id(job), inline=True)
-        e.add_field(name="STR", value=str, inline=True)
-        e.add_field(name="DEX", value=dex, inline=True)
         e.add_field(name="Guild", value=guild_name, inline=True)
-        e.add_field(name="LUK", value=luk, inline=True)
-        e.add_field(name="INT", value=int, inline=True)
         e.add_field(name="Rank", value=rank, inline=True)
+        e.add_field(name="Meso", value=meso, inline=True)
+        e.add_field(name="Fame", value=fame, inline=True)
+        # e.add_field(name="Rebirths", value=rebirths, inline=True)
+
         await txt_channel.send(embed=e)
         return True
 
