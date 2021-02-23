@@ -44,7 +44,7 @@ async def on_ready():  # method that is called when bot is online
 
     if config.SHOW_ONLINE_PLAYERS:
         # print("Starting online players tracker...")
-        track_online_players.start()  # Starting the looping tasks
+        await track_online_players.start()  # Starting the looping tasks
 
 
 @client.event
