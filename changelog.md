@@ -135,7 +135,7 @@
   - Added ASCII checks for non-admin commands
   - Added primitive Discord emoji check for non-admin commands  
   - Documentation updates
-## v0.4.3 Alpha
+## v1.0.0 Alpha
 [FEAT: Add Linux scripts](https://github.com/Descended/MaplestoryDiscBot/commit/d179b91b97dc687a47dcfb0f46f0a17dad03da74)
 [CHORE: Update dependencies ](https://github.com/Descended/MaplestoryDiscBot/commit/2b78a96522a77cf75ace3d668c32916ccd9236eb)
 [Added support for changing the port](https://github.com/Descended/MaplestoryDiscBot/commit/12aa5d1386e232dbd405fcb0135730959f96e658)
