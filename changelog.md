@@ -140,7 +140,7 @@
 [CHORE: Update dependencies ](https://github.com/Descended/MaplestoryDiscBot/commit/2b78a96522a77cf75ace3d668c32916ccd9236eb)  
 [Added support for changing the port](https://github.com/Descended/MaplestoryDiscBot/commit/12aa5d1386e232dbd405fcb0135730959f96e658)  
 [Added await function to online player tracker](https://github.com/Descended/MaplestoryDiscBot/commit/52b563f4995ebe9a6c397e51f6a51d5a8abf53e5)  
-[Changed Character command ](Changed Character command )  
+[Changed Character command](https://github.com/Descended/MaplestoryDiscBot/commit/b03583cac8d572ce430fed37ddc1e439daecce98)  
   - Removed character stats  
   - Added Fame and Meso to character info  
   - Added rebirths to character info (Commented out)  
