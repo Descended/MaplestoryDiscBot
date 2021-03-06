@@ -20,16 +20,16 @@ class Utils:
         return str(num) + suffix
 
     @staticmethod
-    def get_job_by_id(id):
+    def get_job_by_id(job_id):
         try:
             # spirit_logger.debug("Getting job by ID")
-            with open("settings/jobs.json", "r") as json_file:
+            with open("src/settings/jobs.json", "r") as json_file:
                 data = json.load(json_file)
-                job_name = data[str(id)]
+                job_name = data[str(job_id)]
                 spirit_logger.debug(f"Job name: {job_name}")
                 return job_name
         except Exception as e:
-            spirit_logger.error(f"Error occurred whilst attempting to get job by ID: \n{e}")
+            spirit_logger.error(f"Error occurred whilst attempting to get job by ID:\n  {e}")
             return "Unknown"
 
     @staticmethod
