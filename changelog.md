@@ -144,3 +144,7 @@
   - Removed character stats  
   - Added Fame and Meso to character info  
   - Added rebirths to character info (Commented out)  
+  
+## v1.0.1 Alpha  
+[FIX: Incorrect JSON file path](https://github.com/Descended/MaplestoryDiscBot/commit/639d5b51a7cf10a2ce6b15a34b093b8a45100926)  
+  - Job ID to Job Name mapping should now be fixed
