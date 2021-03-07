@@ -79,7 +79,6 @@ if __name__ == '__main__':
     else:
         spirit_logger.info("  You are up to date! :)")
 
-    spirit_logger.info("Checking for updates...")
     # Start bot
     main()
     spirit_logger.info("Shutting down logger...")
