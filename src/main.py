@@ -7,6 +7,7 @@ from discord.ext import tasks
 # Necessary to run from a batch file unfortunately
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
+import src.utils as utils
 from src.commands.command_handler import CommandHandler
 from src.settings import config
 from src.api_handler import API
@@ -31,7 +32,7 @@ async def track_online_players():
         await client.change_presence(activity=discord.Game(name=API.get_server_info()))
     except Exception as e:
         # print(f"Error encountered whilst tracking online players: \n{e}")
-        spirit_logger.error("Could not load online players!")
+        spirit_logger.error(f"Could not load online players!\n  {e}")
 
 
 @client.event
@@ -71,6 +72,15 @@ def main():  # main function
 
 
 if __name__ == '__main__':
+    # Check if there is a newer version
+    spirit_logger.info("Checking for updates...")
+    if utils.check_version():
+        spirit_logger.info("  There is a newer version available! Please update!")
+    else:
+        spirit_logger.info("  You are up to date! :)")
+
+    spirit_logger.info("Checking for updates...")
+    # Start bot
     main()
     spirit_logger.info("Shutting down logger...")
     logger.shutdown_logger()
