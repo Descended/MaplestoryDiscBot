@@ -148,3 +148,7 @@
 ## v1.0.1 Alpha  
 [FIX: Incorrect JSON file path](https://github.com/Descended/MaplestoryDiscBot/commit/639d5b51a7cf10a2ce6b15a34b093b8a45100926)  
   - Job ID to Job Name mapping should now be fixed
+
+## v1.0.2 Alpha
+[FEAT: Add version checker](https://github.com/Descended/MaplestoryDiscBot/commit/1bc3263431d5ae4bb6e31601ddfa2312d10b42e3)  
+[REFACTOR: Make utility module use top-level functions instead](https://github.com/Descended/MaplestoryDiscBot/commit/781e4f2a9d1c2d83d39eaa4458e781f0ee7e49da)  

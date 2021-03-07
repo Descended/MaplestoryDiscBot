@@ -105,7 +105,7 @@ TOGGLE_ON_OFF = {
 DISABLED_TEXT = "This command has been disabled"
 
 # Text in help command
-BOT_VER = "v1.0.1 Alpha"
+BOT_VER = "v1.0.2 Alpha"
 
 # Advanced Logger Constants
 LOG_FORMAT = "%(asctime)s — %(name)s — %(levelname)s — %(message)s"
