@@ -1,7 +1,7 @@
 from discord import Member, Guild, TextChannel
 
 from src.command_logger import Logger
-from src.utils import Utils
+import src.utils as utils
 from src.commands.command import Command
 from src.settings import config
 import src.generic_logger as logger
@@ -29,7 +29,7 @@ class CommandHandler:
         # Get the list of Command methods in the Command module
         cmds = [func for func in dir(Command) if callable(getattr(Command, func)) and not func.startswith("__")]
 
-        if config.LOG_COMMANDS and Utils.is_command(msg.split(" ")[0]):
+        if config.LOG_COMMANDS and utils.is_command(msg.split(" ")[0]):
             # If the message is a command we log it to command_log.txt
             Logger.log_command(author, msg.split(" ")[0])
 

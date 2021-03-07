@@ -1,7 +1,7 @@
 import discord
 
 from src.api_handler import API
-from src.utils import Utils
+import src.utils as utils
 from src.database_handler import DatabaseHandler
 
 from src.commands.command_decorator import command
@@ -94,7 +94,7 @@ class Command:
 
         # Optional ASCII-check for char name (comment out if undesired)
         # Since GMS should only have ASCII names
-        if not Utils.is_ascii(character_name):
+        if not utils.is_ascii(character_name):
             await txt_channel.send("Invalid characters detected in character name!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
             return False
@@ -139,7 +139,7 @@ class Command:
                      icon_url=config.ICON_URL)
         e.add_field(name="Name", value=name, inline=True)
         e.add_field(name="Level", value=level, inline=True)
-        e.add_field(name="Job", value=Utils.get_job_by_id(job), inline=True)
+        e.add_field(name="Job", value=utils.get_job_by_id(job), inline=True)
         e.add_field(name="Guild", value=guild_name, inline=True)
         e.add_field(name="Rank", value=rank, inline=True)
         e.add_field(name="Meso", value=meso, inline=True)
@@ -164,7 +164,7 @@ class Command:
 
         # Optional ASCII-check for guild name (comment out if undesired)
         # Since GMS should only have ASCII names
-        if not Utils.is_ascii(guild_name):
+        if not utils.is_ascii(guild_name):
             await txt_channel.send("Invalid characters detected in guild name!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
             return False
@@ -194,7 +194,7 @@ class Command:
         gp = guild_info["GP"]
         alliance_id = guild_info["allianceId"]
 
-        guild_img = Utils.get_guild_logo(guild_mark_id=logo, guild_mark_color_id=logo_color,
+        guild_img = utils.get_guild_logo(guild_mark_id=logo, guild_mark_color_id=logo_color,
                                          guild_background_id=logo_bg, guild_background_color_id=logo_bg_color)
         e = discord.Embed(title="Guild info", colour=config.EMBED_COLOR)
         e.set_footer(text=config.SERVER_NAME,
@@ -222,7 +222,7 @@ class Command:
         category = args[1]
 
         # Optional ASCII-check for rank type (comment out if undesired)
-        if not Utils.is_ascii(category):
+        if not utils.is_ascii(category):
             await txt_channel.send("Invalid characters detected in rank category!")
             spirit_logger.warn(f"{author} used a command with non-ASCII characters: {msg}")
             return False
@@ -243,9 +243,9 @@ class Command:
         for x in range(5):
             name = table[x]["name"]
             rank_type = table[x][category]
-            job = Utils.get_job_by_id(table[x]["job"])
+            job = utils.get_job_by_id(table[x]["job"])
 
-            e.add_field(name=f"{Utils.get_ordinal_number(x + 1)}.  {name} ({job})", value=f"{category}: {rank_type}",
+            e.add_field(name=f"{utils.get_ordinal_number(x + 1)}.  {name} ({job})", value=f"{category}: {rank_type}",
                         inline=False)
         await txt_channel.send(embed=e)
         return True
