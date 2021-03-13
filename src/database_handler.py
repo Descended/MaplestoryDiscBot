@@ -281,3 +281,33 @@ class DatabaseHandler:
             print(f"Error encountered whilst setting GM level via SQL: \n{e}")
             spirit_logger.error(f"Error encountered whilst setting GM level via SQL: \n{e}")
             return e, False
+
+    @staticmethod
+    def get_map(name):
+        try:
+            con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
+            cursor = con.cursor(dictionary=True)
+            cursor.execute(f"SELECT map from characters WHERE name = '{name}'")
+        except Exception as e:
+            print(f"Error encountered whilst getting map id via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst getting map id via SQL: \n{e}")
+
+    @staticmethod
+    def set_map(name, map_id):
+        try:
+            # spirit_logger.debug(f"Attempting to set character map to {map_id} by name: {name}")
+
+            con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
+            cursor = con.cursor(dictionary=True)
+            cursor.execute(f"UPDATE characters SET map = {map_id} WHERE name = '{name}'")
+            con.commit()
+            con.disconnect()
+            return f"Succesfully changed the map of {name} to: {map_id}"
+        except Exception as e:
+            print(f"Error encountered whilst setting Map ID via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst setting Map id via SQL: \n{e}")
+            return e, False
