@@ -152,3 +152,6 @@
 ## v1.0.2 Alpha
 [FEAT: Add version checker](https://github.com/Descended/MaplestoryDiscBot/commit/1bc3263431d5ae4bb6e31601ddfa2312d10b42e3)  
 [REFACTOR: Make utility module use top-level functions instead](https://github.com/Descended/MaplestoryDiscBot/commit/781e4f2a9d1c2d83d39eaa4458e781f0ee7e49da)  
+
+## v1.1.0 Alpha
+[Added get_map and set_map in Database Handler ](https://github.com/Descended/MaplestoryDiscBot/commit/cbb4aabbc131ac663b792c3417c2c2ade2f6cc84)  
