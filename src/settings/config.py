@@ -82,7 +82,7 @@ COMMANDS = [
     "credits",
     "credit",
     "info",
-    "ban"
+    "ban",
 ]
 
 # Turn commands on (True) or off (False)
@@ -102,7 +102,7 @@ TOGGLE_ON_OFF = {
     'handle_setgmlevel': True,
     'handle_give_vp': True,
     'handle_giveaway': False,
-    'handle_ban': False
+    'handle_ban': False,
 }
 DISABLED_TEXT = "This command has been disabled"
 

@@ -334,12 +334,9 @@ class Command:
             await txt_channel.send("Usage: !whisper <name> <message>")
             return False
         player = args[1]
-        i = 2
-        message = ""
-        while i < len(args):
-            message += args[i] + " "
-            i += 1
-        m = API.whisper(player, message)
+        message_list = args[2:]
+        message_string = " ".join(message_list)
+        m = API.whisper(player, message_string)
         await txt_channel.send(m)
         return True
 
@@ -356,12 +353,9 @@ class Command:
             # spirit_logger.warn(f"{author} has made and invalid !notice command attempt: {msg}")
             await txt_channel.send("Usage: !notice <message>")
             return False
-        i = 1
-        messag = ""
-        while i < len(args):  # for loop to get all arguments
-            messag += args[i] + " "
-            i += 1
-        m = API.notice(messag)
+        message_list = args[1:]
+        message_string = " ".join(message_list)
+        m = API.notice(message_string)
         await txt_channel.send(m)
         return True
 
@@ -524,16 +518,13 @@ class Command:
     )
     async def handle_ban(client, txt_channel, author, msg, message) \
             -> "Ban a player":
-        args = msg.split(" ")
+        args = msg.split()
         if len(args) < 3:
             await txt_channel.send("Usage: !ban <character> <reason>")
             return False
         player = args[1]
-        i = 2
-        reason = ""
-        while i < len(args):
-            reason += args[i] + " "
-            i += 1
+        reason_list = args[2:]
+        reason = " ".join(reason_list)
         API.dc_player(player)
         s = DatabaseHandler.ban_account(player, reason)
         await txt_channel.send(s)
