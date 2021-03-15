@@ -103,6 +103,7 @@ TOGGLE_ON_OFF = {
     'handle_give_vp': True,
     'handle_giveaway': False,
     'handle_ban': False,
+    'handle_unstuck': False,
 }
 DISABLED_TEXT = "This command has been disabled"
 

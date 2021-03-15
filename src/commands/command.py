@@ -274,7 +274,8 @@ class Command:
 
         e = discord.Embed(title="Credits", colour=config.EMBED_COLOR, url="https://github.com/Descended"
                                                                           "/MaplestoryDiscBot")
-        e.set_thumbnail(url="https://cdn.discordapp.com/emojis/755698200970657863.png?v=1")
+        e.set_thumbnail(
+            url="https://cdn.discordapp.com/icons/722153430457647104/ad8368ee9d687dc73aaa8f47ce0c0026.png?size=128")
         e.add_field(name="Contributors", value=credits_info, inline=True)
         await txt_channel.send(embed=e)
         return True
@@ -529,3 +530,24 @@ class Command:
         s = DatabaseHandler.ban_account(player, reason)
         await txt_channel.send(s)
         return True
+
+    @staticmethod
+    @command(
+        cmd=["unstuck"],
+        role=[config.ADMIN_ROLE]
+    )
+    async def handle_unstuck(client, txt_channel, author, msg, message) \
+            -> "Unstucks a player":
+        args = msg.split()
+        if len(args) < 2:
+            await txt_channel.send("Usage: !unstuck <character>")
+            return False
+        player = args[1]
+        API.dc_player(player)
+        old_map = DatabaseHandler.get_map(player)
+        if not old_map:
+            await txt_channel.send("User not found")
+            return False
+        henesys = 100000000
+        new_map_response = DatabaseHandler.set_map(player, henesys, old_map)
+        await txt_channel.send(new_map_response)

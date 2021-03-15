@@ -16,7 +16,8 @@ class DatabaseHandler:
         try:
             # spirit_logger.debug(f"Attempting to get char stats from name via DB: {character_name}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             cursor.execute(f"SELECT * FROM characters WHERE name = '{character_name}'")
             rows = cursor.fetchall()
@@ -33,7 +34,8 @@ class DatabaseHandler:
         try:
             # spirit_logger.debug(f"Attempting to get char look via DB. ID: {character_id}; Hair: {hair}; Face: {face}; Skin: {skin}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             cursor.execute(
                 f"SELECT * FROM inventoryitems WHERE characterid = '{character_id}' AND inventorytype = '-1'")  # -1 = equipped
@@ -60,7 +62,8 @@ class DatabaseHandler:
         try:
             # spirit_logger.debug(f"Attempting to get guild name from id: {guild_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             cursor.execute(
                 f"SELECT name FROM guilds WHERE guildid = '{guild_id}'")  # gets the guild name through the guild id
@@ -79,7 +82,8 @@ class DatabaseHandler:
         try:
             # spirit_logger.debug(f"Attempting to get guild info from id: {guild_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             cursor.execute(f"SELECT * FROM guilds WHERE name = '{name}'")
             rows = cursor.fetchall()
@@ -100,7 +104,8 @@ class DatabaseHandler:
         else:
             try:
                 con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                              password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                              password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                              port=config.DATABASE_PORT)
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(f"SELECT name FROM alliance WHERE id = '{alliance_id}'")
                 rows = cursor.fetchall()
@@ -136,7 +141,8 @@ class DatabaseHandler:
         try:
             # spirit_logger.debug(f"Attempting to get account ID from character name: {character_name}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             cursor.execute(f"SELECT accountid from characters WHERE name = '{character_name}'")
             rows = cursor.fetchall()
@@ -159,11 +165,11 @@ class DatabaseHandler:
             if not account_id:  # checks if id is false which means the character was not found
                 return f"Couldn't find {name}"
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT )
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor()
-            cursor.execute(f"UPDATE accounts SET banned = -1 WHERE id = '{account_id}'")
-            cursor.execute(f"DELETE FROM macbans WHERE aid = '{account_id}'")  # aid = account_id
-            cursor.execute(f"DELETE FROM ipbans WHERE aid = '{account_id}'")
+            cursor.execute(f"UPDATE accounts SET banned = 0 WHERE id = '{account_id}'")
+            cursor.execute(f"DELETE FROM accounts_mac WHERE account_id = '{account_id}'")
             con.commit()
             con.disconnect()
             spirit_logger.debug(f"Successfully unbanned {name}")
@@ -183,7 +189,7 @@ class DatabaseHandler:
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME,
                                           port=config.DATABASE_PORT)
             cursor = con.cursor()
-            cursor.execute(f"UPDATE accounts SET banned = 1, banreason = '{reason}' WHERE id = '{account_id}'")
+            cursor.execute(f"UPDATE accounts SET banned = 1, ban_reason = '{reason}' WHERE id = '{account_id}'")
             con.commit()
             con.disconnect()
             spirit_logger.debug(f"Successfully banned {name} for {reason}")
@@ -203,7 +209,8 @@ class DatabaseHandler:
         try:
             # spirit_logger.debug(f"Attempting to get rankings by category: {category}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             cursor.execute(f"SELECT name, {category}, job FROM characters WHERE gm <= 0 ORDER BY level DESC")
             rows = cursor.fetchall()
@@ -220,7 +227,8 @@ class DatabaseHandler:
         try:
             # spirit_logger.debug(f"Attempting to get vote points by id: {account_id}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             cursor.execute(f"SELECT votepoints from accounts WHERE id = '{account_id}'")
             rows = cursor.fetchall()
@@ -242,7 +250,8 @@ class DatabaseHandler:
                 return f"Character {name} not found"
             vp = DatabaseHandler.get_vp(account_id)
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             total = amount + vp
             cursor.execute(f"UPDATE accounts SET votepoints = {total} where id = '{account_id}'")
@@ -260,7 +269,8 @@ class DatabaseHandler:
         try:
             # spirit_logger.debug(f"Attempting to get GM level by name: {name}")
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             cursor.execute(
                 f"SELECT gm from characters WHERE name = '{name}'")
@@ -287,7 +297,8 @@ class DatabaseHandler:
             if lvl == level:
                 return f"{name} is already GM level: {level}"
             con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
-                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME, port=config.DATABASE_PORT)
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
             cursor.execute(f"UPDATE characters SET gm = {level} where name = '{name}'")
             # Updates gm level
@@ -309,13 +320,18 @@ class DatabaseHandler:
                                           password=config.DATABASE_PASS, database=config.DATABASE_NAME,
                                           port=config.DATABASE_PORT)
             cursor = con.cursor(dictionary=True)
-            cursor.execute(f"SELECT map from characters WHERE name = '{name}'")
+            cursor.execute(f"SELECT `map` from characters WHERE name = '{name}'")
+            rows = cursor.fetchall()
+            if len(rows) == 0:  # checks if character exists
+                return False
+            return rows[0]['map']
+
         except Exception as e:
             print(f"Error encountered whilst getting map id via SQL: \n{e}")
             spirit_logger.error(f"Error encountered whilst getting map id via SQL: \n{e}")
 
     @staticmethod
-    def set_map(name, map_id):
+    def set_map(name, map_id, old_map):
         try:
             # spirit_logger.debug(f"Attempting to set character map to {map_id} by name: {name}")
 
@@ -326,7 +342,7 @@ class DatabaseHandler:
             cursor.execute(f"UPDATE characters SET map = {map_id} WHERE name = '{name}'")
             con.commit()
             con.disconnect()
-            return f"Succesfully changed the map of {name} to: {map_id}"
+            return f"Succesfully changed the map of {name} from {old_map} to {map_id}"
         except Exception as e:
             print(f"Error encountered whilst setting Map ID via SQL: \n{e}")
             spirit_logger.error(f"Error encountered whilst setting Map id via SQL: \n{e}")
