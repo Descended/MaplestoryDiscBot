@@ -155,3 +155,7 @@
 
 ## v1.1.0 Alpha
 [Added get_map and set_map in Database Handler ](https://github.com/Descended/MaplestoryDiscBot/commit/cbb4aabbc131ac663b792c3417c2c2ade2f6cc84)  
+
+## v1.2.0 Alpha
+[STYLE: Replace while with list slices](https://github.com/Descended/MaplestoryDiscBot/commit/bd80581edc4dc4d71a067c985076c3b5439f87fe)  
+[FEAT: Add ban command](https://github.com/Descended/MaplestoryDiscBot/commit/79320bf2c77c3f4c76c9a69a5c9766c06f7ed973)  
