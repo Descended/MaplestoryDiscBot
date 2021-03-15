@@ -56,7 +56,7 @@ CREDITS = {
     # "DiscordUser": "for <reason>"
     '@Desc#0416': ' - Author',
     '@Not Brandon#4444': ' - Contributor',
-    '@KOOKIIE#9770': ' - Contributor'
+    '@KOOKIIE#9770': ' - Contributor',
 }
 
 # List of commands tracked by the logger:
@@ -82,6 +82,7 @@ COMMANDS = [
     "credits",
     "credit",
     "info",
+    "ban"
 ]
 
 # Turn commands on (True) or off (False)
@@ -101,6 +102,7 @@ TOGGLE_ON_OFF = {
     'handle_setgmlevel': True,
     'handle_give_vp': True,
     'handle_giveaway': False,
+    'handle_ban': False
 }
 DISABLED_TEXT = "This command has been disabled"
 

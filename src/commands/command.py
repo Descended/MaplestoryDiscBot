@@ -516,3 +516,25 @@ class Command:
         except Exception as e:
             print(f"Error occurred whilst trying to turn logger off: \n{e}")
             return False
+
+    @staticmethod
+    @command(
+        cmd=["ban"],
+        role=[config.ADMIN_ROLE]
+    )
+    async def handle_ban(client, txt_channel, author, msg, message) \
+            -> "Ban a player":
+        args = msg.split(" ")
+        if len(args) < 3:
+            await txt_channel.send("Usage: !ban <character> <reason>")
+            return False
+        player = args[1]
+        i = 2
+        reason = ""
+        while i < len(args):
+            reason += args[i] + " "
+            i += 1
+        API.dc_player(player)
+        s = DatabaseHandler.ban_account(player, reason)
+        await txt_channel.send(s)
+        return True
