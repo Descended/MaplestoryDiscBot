@@ -174,6 +174,26 @@ class DatabaseHandler:
             return e, False
 
     @staticmethod
+    def ban_account(name, reason):
+        try:
+            account_id = DatabaseHandler.get_account_id(name)
+            if not account_id:
+                return f"Couldn't find {name}"
+            con = mysql.connector.connect(host=config.DATABASE_HOST, user=config.DATABASE_USER,
+                                          password=config.DATABASE_PASS, database=config.DATABASE_NAME,
+                                          port=config.DATABASE_PORT)
+            cursor = con.cursor()
+            cursor.execute(f"UPDATE accounts SET banned = 1, banreason = '{reason}' WHERE id = '{account_id}'")
+            con.commit()
+            con.disconnect()
+            spirit_logger.debug(f"Successfully banned {name} for {reason}")
+            return f"Successfully banned {name} for {reason}"
+        except Exception as e:
+            print(f"Error encountered whilst attempting account ban via SQL: \n{e}")
+            spirit_logger.error(f"Error encountered whilst attempting account ban via SQL: \n{e}")
+            return e, False
+
+    @staticmethod
     def get_rankings(category):
         """
         Given a SQL Column (i.e. mesos, nx), order it Descending (Greatest to Least) and return the list
